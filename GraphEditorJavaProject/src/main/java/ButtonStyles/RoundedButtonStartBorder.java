@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class RoundedButtonStartBorder extends RoundedButtonBorder{
 
-    RoundedButtonStartBorder(int radius) {
+    public RoundedButtonStartBorder(int radius) {
         super(radius);
     }
 

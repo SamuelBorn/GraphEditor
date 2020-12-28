@@ -55,4 +55,23 @@ public class Graph {
             System.out.println();
         }
     }
+
+    public Vertex getStartVertex(){
+        for (Vertex vertex : vertices) {
+            if (vertex.getVertexState()==VertexState.START) {
+                return vertex;
+            }
+        }
+        return null;
+    }
+
+    public void setStartVertex(Vertex vertex){
+        if (!vertices.contains(vertex)) throw new IllegalArgumentException("vertex not in graph");
+        for (Vertex vertexIterator : vertices) {
+            if (vertexIterator.getVertexState()==VertexState.START) {
+                vertexIterator.setVertexState(VertexState.NORMAl);
+            }
+        }
+        vertex.setVertexState(VertexState.START);
+    }
 }

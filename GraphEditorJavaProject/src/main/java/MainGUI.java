@@ -1,4 +1,5 @@
 import ButtonStyles.RoundedButtonBorder;
+import ButtonStyles.RoundedButtonStartBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,18 +13,18 @@ public class MainGUI extends MouseAdapter implements Runnable, ActionListener {
     private JFrame frame;
     private JPanel contentPane;
     private final Graph graph = new Graph();
-    private final Hashtable<JButton, Vertex> buttons = new Hashtable<>();
+    private final Hashtable<Vertex, JButton> buttons = new Hashtable<>();
+    private final int buttonSize = 45;
 
-    JRadioButtonMenuItem connectVertices;
-    JRadioButtonMenuItem removeVertex ;
-    JRadioButtonMenuItem setStart;
-    JRadioButtonMenuItem setFinal;
+    private JRadioButtonMenuItem connectVertices;
+    private JRadioButtonMenuItem removeVertex ;
+    private JRadioButtonMenuItem setStart;
+    private JRadioButtonMenuItem setFinal;
 
     public void mouseClicked(MouseEvent mouseEvent) {
         //create the button
         int xCursorPosition = mouseEvent.getX();
         int yCursorPosition = mouseEvent.getY();
-        int buttonSize = 45;
         JButton button = new JButton("q"+graph.getSize());
         button.setBounds(xCursorPosition - buttonSize / 2, yCursorPosition - buttonSize / 2, buttonSize, buttonSize);
         button.setBorder(new RoundedButtonBorder(buttonSize));
@@ -35,7 +36,7 @@ public class MainGUI extends MouseAdapter implements Runnable, ActionListener {
         graph.printGraph();
 
         //store button and vertex
-        buttons.put(button, vertex);
+        buttons.put(vertex, button);
 
         contentPane.add(button);
         contentPane.revalidate();
@@ -44,7 +45,17 @@ public class MainGUI extends MouseAdapter implements Runnable, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        JButton buttonPressed = (JButton) e.getSource();
+        switch (getSelectedEditOption()){
+            case SET_FINAL:
+                break;
+            case SET_START:
+                break;
+            case REMOVE_VERTEX:
+                break;
+            case CONNECT_VERTICES:
+                break;
+        }
     }
 
     @Override
@@ -119,5 +130,27 @@ public class MainGUI extends MouseAdapter implements Runnable, ActionListener {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new MainGUI());
+    }
+
+    private void setFinal(JButton button){
+
+    }
+
+    private void setStart(JButton newStartButton){
+        Vertex previousStartVertex = graph.getStartVertex();
+        JButton previousStartButton = buttons.get(previousStartVertex);
+
+        previousStartButton.setBorder(new RoundedButtonBorder(buttonSize));
+        newStartButton.setBorder(new RoundedButtonStartBorder(buttonSize));
+
+        graph.setStartVertex();
+    }
+
+    private void connectVertices(JButton button){
+
+    }
+
+    private void deleteVertex(JButton button){
+
     }
 }
