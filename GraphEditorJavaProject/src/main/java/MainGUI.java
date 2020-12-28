@@ -1,12 +1,14 @@
 import ButtonStyles.RoundedButtonBorder;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Hashtable;
 import javax.swing.*;
 
-public class MainGUI extends MouseAdapter implements Runnable{
+public class MainGUI extends MouseAdapter implements Runnable, ActionListener {
     private JFrame frame;
     private JPanel contentPane;
     private final Graph graph = new Graph();
@@ -38,6 +40,11 @@ public class MainGUI extends MouseAdapter implements Runnable{
         contentPane.add(button);
         contentPane.revalidate();
         contentPane.repaint();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 
     @Override
