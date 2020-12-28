@@ -10,7 +10,7 @@ public class MainGUI extends MouseAdapter implements Runnable {
         int xCursorPosition = mouseEvent.getX();
         int yCursorPosition = mouseEvent.getY();
 
-        int buttonSize = 50;
+        int buttonSize = 45;
         JButton button = new JButton("1");
         button.setBounds(xCursorPosition-buttonSize/2, yCursorPosition-buttonSize/2, buttonSize, buttonSize);
         button.setBorder(new RoundedButtonBorder(buttonSize));
