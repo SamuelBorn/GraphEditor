@@ -12,6 +12,11 @@ public class MainGUI extends MouseAdapter implements Runnable{
     private final Graph graph = new Graph();
     private final Hashtable<JButton, Vertex> buttons = new Hashtable<>();
 
+    JRadioButtonMenuItem connectVertices;
+    JRadioButtonMenuItem removeVertex ;
+    JRadioButtonMenuItem setStart;
+    JRadioButtonMenuItem setFinal;
+
     public void mouseClicked(MouseEvent mouseEvent) {
         //create the button
         int xCursorPosition = mouseEvent.getX();
@@ -59,11 +64,11 @@ public class MainGUI extends MouseAdapter implements Runnable{
         JMenuBar jMenuBar = new JMenuBar();
 
         JMenu editGraph = new JMenu("Edit Graph");
-        ButtonGroup group = new ButtonGroup();
-        JRadioButtonMenuItem connectVertices = new JRadioButtonMenuItem("Connect vertices");
-        JRadioButtonMenuItem removeVertex = new JRadioButtonMenuItem("Remove vertices");
-        JRadioButtonMenuItem setStart = new JRadioButtonMenuItem("Set starting vertex");
-        JRadioButtonMenuItem setFinal = new JRadioButtonMenuItem("Set final vertices");
+        ButtonGroup editOptionGroup = new ButtonGroup();
+        connectVertices = new JRadioButtonMenuItem("Connect vertices");
+        removeVertex = new JRadioButtonMenuItem("Remove vertices");
+        setStart = new JRadioButtonMenuItem("Set starting vertex");
+        setFinal = new JRadioButtonMenuItem("Set final vertices");
 
         JMenu tgiAlgorithms = new JMenu("TGI Algorithms");
         JMenuItem minimize = new JMenuItem("Minimize Graph");
@@ -74,10 +79,10 @@ public class MainGUI extends MouseAdapter implements Runnable{
         editGraph.add(removeVertex);
         editGraph.add(setFinal);
         editGraph.add(setStart);
-        group.add(connectVertices);
-        group.add(removeVertex);
-        group.add(setFinal);
-        group.add(setStart);
+        editOptionGroup.add(connectVertices);
+        editOptionGroup.add(removeVertex);
+        editOptionGroup.add(setFinal);
+        editOptionGroup.add(setStart);
 
         tgiAlgorithms.add(minimize);
         tgiAlgorithms.add(neaToDea);
@@ -94,8 +99,15 @@ public class MainGUI extends MouseAdapter implements Runnable{
             System.out.println("Tschüss");
             //TODO
         });
-
         frame.setJMenuBar(jMenuBar);
+    }
+
+    public EditOptionSelected getSelectedEditOption(){
+        if (connectVertices.isSelected()) return EditOptionSelected.CONNECT_VERTICES;
+        if (removeVertex.isSelected()) return EditOptionSelected.REMOVE_VERTEX;
+        if (setStart.isSelected())return EditOptionSelected.SET_START;
+        if (setFinal.isSelected())return EditOptionSelected.SET_FINAL;
+        throw new RuntimeException("no valid graph editing selection");
     }
 
     public static void main(String[] args) {
