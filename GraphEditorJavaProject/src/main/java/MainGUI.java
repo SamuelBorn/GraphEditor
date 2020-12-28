@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class MainGUI extends MouseAdapter implements Runnable {
+    private JFrame frame;
     private JPanel contentPane;
 
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -12,7 +13,7 @@ public class MainGUI extends MouseAdapter implements Runnable {
 
         int buttonSize = 45;
         JButton button = new JButton("1");
-        button.setBounds(xCursorPosition-buttonSize/2, yCursorPosition-buttonSize/2, buttonSize, buttonSize);
+        button.setBounds(xCursorPosition - buttonSize / 2, yCursorPosition - buttonSize / 2, buttonSize, buttonSize);
         button.setBorder(new RoundedButtonBorder(buttonSize));
         button.setContentAreaFilled(false);
 
@@ -27,15 +28,43 @@ public class MainGUI extends MouseAdapter implements Runnable {
     }
 
     private void initializeGUI() {
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         contentPane = (JPanel) frame.getContentPane();
         contentPane.setLayout(null);
         contentPane.addMouseListener(this);
         contentPane.setBackground(Color.WHITE);
-        frame.setSize(600,400);
+
+        initializeMenuBar();
+
+        frame.setSize(600, 400);
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
+    }
+    
+    public void initializeMenuBar(){
+        JMenuBar jMenuBar = new JMenuBar();
+        JMenu editGraph = new JMenu("Edit Graph");
+        JMenu tgiAlgorithms = new JMenu("TGI Algorithms");
+        JRadioButtonMenuItem addVertex = new JRadioButtonMenuItem("Add vertices");
+        JRadioButtonMenuItem removeVertex = new JRadioButtonMenuItem("Remove vertices");
+        JRadioButtonMenuItem setStart = new JRadioButtonMenuItem("Set starting vertex");
+        JRadioButtonMenuItem setFinal = new JRadioButtonMenuItem("Set final vertices");
+        JButton minimize = new JButton("Minimize Graph");
+        JButton neaToDea = new JButton("NEA to DEA");
+
+        editGraph.add(addVertex);
+        editGraph.add(removeVertex);
+        editGraph.add(setFinal);
+        editGraph.add(setStart);
+
+        tgiAlgorithms.add(minimize);
+        tgiAlgorithms.add(neaToDea);
+
+        jMenuBar.add(editGraph);
+        jMenuBar.add(tgiAlgorithms);
+
+        frame.setJMenuBar(jMenuBar);
     }
 
     public static void main(String[] args) {
