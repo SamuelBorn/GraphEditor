@@ -2,7 +2,6 @@ package ButtonStyles;
 
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 /**
  * This class is needed to display round JButtons (by default buttons are rectangular)
@@ -14,7 +13,7 @@ public class RoundedButtonBorder implements Border {
 
     public final int radius;
 
-    RoundedButtonBorder(int radius) {
+    public RoundedButtonBorder(int radius) {
         this.radius = radius;
     }
 

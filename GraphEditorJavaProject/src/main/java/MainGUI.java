@@ -1,28 +1,34 @@
 import ButtonStyles.RoundedButtonBorder;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Hashtable;
 import javax.swing.*;
 
-public class MainGUI extends MouseAdapter implements Runnable {
+public class MainGUI extends MouseAdapter implements Runnable{
     private JFrame frame;
     private JPanel contentPane;
-    private Graph graph;
-    private Hashtable<JButton, Vertex> buttons;
+    private final Graph graph = new Graph();
+    private final Hashtable<JButton, Vertex> buttons = new Hashtable<>();
 
     public void mouseClicked(MouseEvent mouseEvent) {
+        //create the button
         int xCursorPosition = mouseEvent.getX();
         int yCursorPosition = mouseEvent.getY();
-
         int buttonSize = 45;
-        JButton button = new JButton("1");
+        JButton button = new JButton("q"+graph.getSize());
         button.setBounds(xCursorPosition - buttonSize / 2, yCursorPosition - buttonSize / 2, buttonSize, buttonSize);
         button.setBorder(new RoundedButtonBorder(buttonSize));
         button.setContentAreaFilled(false);
+
+        //create the vertex
+        Vertex vertex = new Vertex("q"+graph.getSize());
+        graph.addVertex(vertex);
+        graph.printGraph();
+
+        //store button and vertex
+        buttons.put(button, vertex);
 
         contentPane.add(button);
         contentPane.revalidate();
@@ -79,20 +85,14 @@ public class MainGUI extends MouseAdapter implements Runnable {
         jMenuBar.add(editGraph);
         jMenuBar.add(tgiAlgorithms);
 
-        minimize.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Hallo");
-                //TODO
-            }
+        minimize.addActionListener(e -> {
+            System.out.println("Hallo");
+            //TODO
         });
 
-        neaToDea.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Tschüss");
-                //TODO
-            }
+        neaToDea.addActionListener(e -> {
+            System.out.println("Tschüss");
+            //TODO
         });
 
         frame.setJMenuBar(jMenuBar);

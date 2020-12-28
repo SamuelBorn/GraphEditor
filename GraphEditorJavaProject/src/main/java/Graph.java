@@ -47,4 +47,12 @@ public class Graph {
     public void NEAtoDEA() {
         //TODO
     }
+
+    public void printGraph(){
+        //for debugging
+        for (Vertex vertex : vertices) {
+            System.out.println(vertex.getName()+" "+ vertex.getOutwardEdges());
+            System.out.println();
+        }
+    }
 }
