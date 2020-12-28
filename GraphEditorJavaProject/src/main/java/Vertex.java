@@ -4,6 +4,7 @@ import java.util.Set;
 public class Vertex {
     private Set<Vertex> outwardEdges;
 
+
     public Vertex(){
         outwardEdges = new HashSet<>();
     }

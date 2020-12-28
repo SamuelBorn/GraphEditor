@@ -52,7 +52,7 @@ public class MainGUI extends MouseAdapter implements Runnable {
 
         JMenu editGraph = new JMenu("Edit Graph");
         ButtonGroup group = new ButtonGroup();
-        JRadioButtonMenuItem addVertex = new JRadioButtonMenuItem("Add vertices");
+        JRadioButtonMenuItem connectVertices = new JRadioButtonMenuItem("Connect vertices");
         JRadioButtonMenuItem removeVertex = new JRadioButtonMenuItem("Remove vertices");
         JRadioButtonMenuItem setStart = new JRadioButtonMenuItem("Set starting vertex");
         JRadioButtonMenuItem setFinal = new JRadioButtonMenuItem("Set final vertices");
@@ -61,12 +61,12 @@ public class MainGUI extends MouseAdapter implements Runnable {
         JMenuItem minimize = new JMenuItem("Minimize Graph");
         JMenuItem neaToDea = new JMenuItem("NEA into DEA");
 
-        addVertex.setSelected(true);
-        editGraph.add(addVertex);
+        connectVertices.setSelected(true);
+        editGraph.add(connectVertices);
         editGraph.add(removeVertex);
         editGraph.add(setFinal);
         editGraph.add(setStart);
-        group.add(addVertex);
+        group.add(connectVertices);
         group.add(removeVertex);
         group.add(setFinal);
         group.add(setStart);
