@@ -3,7 +3,7 @@ import java.util.Set;
 
 public class Vertex {
     private Set<Vertex> outwardEdges;
-
+    private VertexState vertexState;
 
     public Vertex(){
         outwardEdges = new HashSet<>();
@@ -23,5 +23,13 @@ public class Vertex {
 
     public void removeOutwardEdge(Vertex vertex){
         outwardEdges.remove(vertex);
+    }
+
+    public VertexState getVertexState(){
+        return this.vertexState;
+    }
+
+    public void setVertexState(VertexState vertexState){
+        this.vertexState = vertexState;
     }
 }

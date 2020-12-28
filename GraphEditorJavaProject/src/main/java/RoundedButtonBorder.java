@@ -10,7 +10,8 @@ import java.awt.geom.AffineTransform;
  */
 public class RoundedButtonBorder implements Border {
 
-    public final int radius;
+    private final int radius;
+
 
     RoundedButtonBorder(int radius) {
         this.radius = radius;
