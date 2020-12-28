@@ -1,11 +1,16 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Hashtable;
 import javax.swing.*;
 
 public class MainGUI extends MouseAdapter implements Runnable {
     private JFrame frame;
     private JPanel contentPane;
+    private Graph graph;
+    private Hashtable<JButton, Vertex> buttons;
 
     public void mouseClicked(MouseEvent mouseEvent) {
         int xCursorPosition = mouseEvent.getX();
@@ -28,7 +33,7 @@ public class MainGUI extends MouseAdapter implements Runnable {
     }
 
     private void initializeGUI() {
-        frame = new JFrame();
+        frame = new JFrame("Graph Editor");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         contentPane = (JPanel) frame.getContentPane();
         contentPane.setLayout(null);
@@ -41,28 +46,52 @@ public class MainGUI extends MouseAdapter implements Runnable {
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
-    
-    public void initializeMenuBar(){
+
+    public void initializeMenuBar() {
         JMenuBar jMenuBar = new JMenuBar();
+
         JMenu editGraph = new JMenu("Edit Graph");
-        JMenu tgiAlgorithms = new JMenu("TGI Algorithms");
+        ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem addVertex = new JRadioButtonMenuItem("Add vertices");
         JRadioButtonMenuItem removeVertex = new JRadioButtonMenuItem("Remove vertices");
         JRadioButtonMenuItem setStart = new JRadioButtonMenuItem("Set starting vertex");
         JRadioButtonMenuItem setFinal = new JRadioButtonMenuItem("Set final vertices");
-        JButton minimize = new JButton("Minimize Graph");
-        JButton neaToDea = new JButton("NEA to DEA");
 
+        JMenu tgiAlgorithms = new JMenu("TGI Algorithms");
+        JMenuItem minimize = new JMenuItem("Minimize Graph");
+        JMenuItem neaToDea = new JMenuItem("NEA into DEA");
+
+        addVertex.setSelected(true);
         editGraph.add(addVertex);
         editGraph.add(removeVertex);
         editGraph.add(setFinal);
         editGraph.add(setStart);
+        group.add(addVertex);
+        group.add(removeVertex);
+        group.add(setFinal);
+        group.add(setStart);
 
         tgiAlgorithms.add(minimize);
         tgiAlgorithms.add(neaToDea);
 
         jMenuBar.add(editGraph);
         jMenuBar.add(tgiAlgorithms);
+
+        minimize.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Hallo");
+                //TODO
+            }
+        });
+
+        neaToDea.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Tschüss");
+                //TODO
+            }
+        });
 
         frame.setJMenuBar(jMenuBar);
     }
