@@ -1,5 +1,7 @@
 package graphEdit.vertexStyles;
 
+import graphEdit.MainGUI;
+
 import javax.swing.border.Border;
 import java.awt.*;
 
@@ -11,14 +13,8 @@ import java.awt.*;
  */
 public class RoundedButtonBorder implements Border {
 
-    public final int radius;
-
-    public RoundedButtonBorder(int radius) {
-        this.radius = radius;
-    }
-
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        g.drawOval(x, y, radius, radius);
+        g.drawOval(x, y, MainGUI.radius, MainGUI.radius);
     }
 
     public Insets getBorderInsets(Component c) {
