@@ -1,13 +1,13 @@
 package graphEdit;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import graphEdit.editStrategies.*;
 import graphEdit.graphRepresentation.Edge;
 import graphEdit.graphRepresentation.Vertex;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class MainGUI implements Runnable {
     public JFrame frame;

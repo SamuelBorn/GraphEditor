@@ -5,7 +5,7 @@ import graphEdit.MainGUI;
 public abstract class EditStrategy {
     MainGUI gui;
 
-    public EditStrategy(MainGUI gui){
+    public EditStrategy(MainGUI gui) {
         this.gui = gui;
     }
 
