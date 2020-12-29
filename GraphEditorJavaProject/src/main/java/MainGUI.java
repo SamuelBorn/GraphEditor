@@ -1,19 +1,20 @@
 import ButtonStyles.RoundedButtonBorder;
 import ButtonStyles.RoundedButtonStartBorder;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Hashtable;
 import javax.swing.*;
 
 public class MainGUI extends MouseAdapter implements Runnable, ActionListener {
     private JFrame frame;
     private JPanel contentPane;
     private final Graph graph = new Graph();
-    private final Hashtable<Vertex, JButton> buttons = new Hashtable<>();
+    private final BiMap<Vertex, JButton> buttons = HashBiMap.create();
     private final int buttonSize = 45;
 
     private JRadioButtonMenuItem connectVertices;
@@ -143,7 +144,7 @@ public class MainGUI extends MouseAdapter implements Runnable, ActionListener {
         previousStartButton.setBorder(new RoundedButtonBorder(buttonSize));
         newStartButton.setBorder(new RoundedButtonStartBorder(buttonSize));
 
-        graph.setStartVertex();
+        buttons.inverse().get(newStartButton)
     }
 
     private void connectVertices(JButton button){
