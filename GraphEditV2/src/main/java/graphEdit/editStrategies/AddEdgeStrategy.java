@@ -1,7 +1,7 @@
 package graphEdit.editStrategies;
 
 import graphEdit.MainGUI;
-import graphEdit.graphRepresentation.Arrow;
+import graphEdit.graphStyles.Arrow;
 import graphEdit.graphRepresentation.Edge;
 import graphEdit.graphRepresentation.Vertex;
 

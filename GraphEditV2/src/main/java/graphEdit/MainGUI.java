@@ -3,7 +3,7 @@ package graphEdit;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import graphEdit.editStrategies.*;
-import graphEdit.graphRepresentation.Arrow;
+import graphEdit.graphStyles.Arrow;
 import graphEdit.graphRepresentation.Edge;
 import graphEdit.graphRepresentation.Graph;
 import graphEdit.graphRepresentation.Vertex;

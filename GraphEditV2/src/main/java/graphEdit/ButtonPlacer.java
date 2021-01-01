@@ -1,7 +1,7 @@
 package graphEdit;
 
 import graphEdit.graphRepresentation.Vertex;
-import graphEdit.vertexStyles.RoundedButtonBorder;
+import graphEdit.graphStyles.RoundedButtonBorder;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

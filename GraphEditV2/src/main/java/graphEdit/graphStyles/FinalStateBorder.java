@@ -1,4 +1,4 @@
-package graphEdit.vertexStyles;
+package graphEdit.graphStyles;
 
 import graphEdit.MainGUI;
 

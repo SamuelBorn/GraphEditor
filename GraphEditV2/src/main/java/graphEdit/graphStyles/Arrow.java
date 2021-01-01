@@ -1,6 +1,8 @@
-package graphEdit.graphRepresentation;
+package graphEdit.graphStyles;
 
 import graphEdit.MainGUI;
+import graphEdit.graphRepresentation.Edge;
+import graphEdit.graphRepresentation.Vertex;
 
 import javax.swing.*;
 import java.awt.*;
