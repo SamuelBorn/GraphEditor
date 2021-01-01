@@ -25,6 +25,7 @@ public class AddEdgeStrategy extends EditStrategy {
                 symbol = getSymbol();
             }while (symbol == ERROR_SYMBOL);
             Edge edge = new Edge(startVertex, endVertex, symbol);
+            gui.graph.addEdge(edge);
             Arrow arrow = new Arrow(edge, gui);
             arrow.setSize(gui.contentPane.getSize());
             gui.contentPane.add(arrow);

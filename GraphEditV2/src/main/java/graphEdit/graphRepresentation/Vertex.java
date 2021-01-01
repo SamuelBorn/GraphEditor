@@ -37,9 +37,6 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return "Vertex{" +
-                "name='" + name + '\'' +
-                ", finalState=" + finalState +
-                '}';
+        return "Vertex{" + name + '}';
     }
 }

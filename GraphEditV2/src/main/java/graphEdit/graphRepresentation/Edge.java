@@ -7,12 +7,6 @@ public class Edge {
     private Vertex endVertex;
     private char symbol;
 
-    public Edge(Vertex startVertex, Vertex endVertex) {
-        this.startVertex = startVertex;
-        this.endVertex = endVertex;
-        this.symbol = ' ';
-    }
-
     public Edge(Vertex startVertex, Vertex endVertex, char symbol) {
         this.startVertex = startVertex;
         this.endVertex = endVertex;
@@ -49,11 +43,7 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "Edge{" +
-                "startVertex=" + startVertex +
-                ", endVertex=" + endVertex +
-                ", symbol=" + symbol +
-                '}';
+        return "Edge{" +startVertex.getName() + "->" + endVertex.getName() + ", " + symbol + '}';
     }
 
     @Override

@@ -1,7 +1,6 @@
 package graphEdit.graphRepresentation;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Graph {
     private final Set<Vertex> vertices;
@@ -14,7 +13,7 @@ public class Graph {
         startVertex = null;
     }
 
-    public int size(){
+    public int size() {
         return vertices.size();
     }
 
@@ -49,15 +48,24 @@ public class Graph {
         edges.remove(edge);
     }
 
-    public void addEdge(Edge edge) {
-        addEdge(edge.getStartVertex(), edge.getEndVertex());
+    public void removeEdges(Collection<Edge> edges){
+        for (Edge edge : edges) {
+            this.edges.remove(edge);
+        }
     }
 
-    public void addEdge(Vertex startVertex, Vertex endVertex) {
-        if (!vertices.contains(startVertex) || !vertices.contains(endVertex)) {
-            return;
+    public void addEdge(Edge edge) {
+        edges.add(edge);
+    }
+
+    public Collection<Edge> getEdgesContainingVertex(Vertex vertex) {
+        Collection<Edge> containList = new ArrayList<>();
+        for (Edge edge : edges) {
+            if (edge.containsVertex(vertex)) {
+                containList.add(edge);
+            }
         }
-        edges.add(new Edge(startVertex, endVertex));
+        return containList;
     }
 
     public Vertex getStartVertex() {
@@ -68,8 +76,9 @@ public class Graph {
         this.startVertex = startVertex;
     }
 
-    public void resetStartVertex(){
+    public void resetStartVertex() {
         startVertex = null;
     }
+
 
 }

@@ -12,26 +12,29 @@ import java.awt.geom.Point2D;
  * This Class ist used to indicate a Edge on Screen between two Vertices
  */
 public class Arrow extends JComponent {
-    private Edge edge;
-    private MainGUI gui;
+    private final Edge edge;
+    private final MainGUI gui;
 
     public Arrow(Edge edge, MainGUI gui) {
         this.edge = edge;
         this.gui = gui;
     }
 
-    public Arrow(Vertex startVertex, Vertex endVertex, MainGUI gui) {
-        new Arrow(new Edge(startVertex, endVertex), gui);
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
+        System.out.println(gui.arrowEdgeBiMap.values());
+        System.out.println(gui.buttonVertexBiMap.values());
+        System.out.println();
+
         //paint line
-        int offsetButton = (int) (gui.buttonVertexBiMap.inverse().get(edge.getStartVertex()).getSize().getHeight() / 2);
-        int x1 = gui.buttonVertexBiMap.inverse().get(edge.getStartVertex()).getX() + offsetButton;
-        int y1 = gui.buttonVertexBiMap.inverse().get(edge.getStartVertex()).getY() + offsetButton;
-        int x2 = gui.buttonVertexBiMap.inverse().get(edge.getEndVertex()).getX() + offsetButton;
-        int y2 = gui.buttonVertexBiMap.inverse().get(edge.getEndVertex()).getY() + offsetButton;
+        int offsetButton = MainGUI.buttonRadius / 2;
+        JButton startButton = gui.buttonVertexBiMap.inverse().get(edge.getStartVertex());
+        JButton endButton = gui.buttonVertexBiMap.inverse().get(edge.getEndVertex());
+        if (startButton == null || endButton == null) return;
+        int x1 = startButton.getX() + offsetButton;
+        int y1 = startButton.getY() + offsetButton;
+        int x2 = endButton.getX() + offsetButton;
+        int y2 = endButton.getY() + offsetButton;
         Point2D.Double start = new Point2D.Double(x1, y1);
         Point2D.Double end = new Point2D.Double(x2, y2);
         double distance = start.distance(end);
@@ -46,6 +49,6 @@ public class Arrow extends JComponent {
 
         //paint symbol
         int offsetSymbol = -10;
-        g.drawString(edge.getSymbol() + "", (x1 + x2) / 2+offsetSymbol, (y1 + y2) / 2 + offsetSymbol);
+        g.drawString(edge.getSymbol() + "", (x1 + x2) / 2 + offsetSymbol, (y1 + y2) / 2 + offsetSymbol);
     }
 }
