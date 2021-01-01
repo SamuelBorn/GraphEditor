@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonClicker implements ActionListener {
-    MainGUI gui;
+    private final MainGUI gui;
 
     public ButtonClicker(MainGUI gui) {
         this.gui = gui;
@@ -14,6 +14,8 @@ public class ButtonClicker implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressedButton = (JButton) e.getSource();
-
+        gui.editOption.editGGraph(pressedButton);
+        gui.contentPane.revalidate();
+        gui.contentPane.repaint();
     }
 }

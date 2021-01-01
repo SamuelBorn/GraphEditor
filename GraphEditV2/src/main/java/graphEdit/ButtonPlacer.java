@@ -1,9 +1,9 @@
 package graphEdit;
 
+import graphEdit.graphRepresentation.Vertex;
 import graphEdit.vertexStyles.RoundedButtonBorder;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,11 +18,18 @@ public class ButtonPlacer extends MouseAdapter {
     public void mouseClicked(MouseEvent event) {
         int x = event.getX();
         int y = event.getY();
-        JButton button = new JButton("");
-        Dimension dim = button.getPreferredSize();
-        button.setBounds(x, y, MainGUI.radius, MainGUI.radius);
+        String name = "q" + gui.graph.size();
+
+        JButton button = new JButton(name);
+        button.setBounds(x - MainGUI.buttonRadius / 2, y - MainGUI.buttonRadius / 2, MainGUI.buttonRadius, MainGUI.buttonRadius);
         button.setBorder(new RoundedButtonBorder());
         button.setContentAreaFilled(false);
+        button.addActionListener(gui.buttonClicker);
+
+        Vertex vertex = new Vertex(name);
+        gui.graph.addVertex(vertex);
+        gui.buttonVertexBiMap.put(button, vertex);
+
         gui.contentPane.add(button);
         gui.contentPane.revalidate();
         gui.contentPane.repaint();

@@ -14,7 +14,7 @@ import java.awt.*;
 public class RoundedButtonBorder implements Border {
 
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        g.drawOval(x, y, MainGUI.radius, MainGUI.radius);
+        g.drawOval(x, y, MainGUI.buttonRadius, MainGUI.buttonRadius);
     }
 
     public Insets getBorderInsets(Component c) {

@@ -1,12 +1,30 @@
 package graphEdit.graphRepresentation;
 
+import java.util.Objects;
+
 public class Edge {
     private Vertex startVertex;
     private Vertex endVertex;
+    private char symbol;
 
     public Edge(Vertex startVertex, Vertex endVertex) {
         this.startVertex = startVertex;
         this.endVertex = endVertex;
+        this.symbol = ' ';
+    }
+
+    public Edge(Vertex startVertex, Vertex endVertex, char symbol) {
+        this.startVertex = startVertex;
+        this.endVertex = endVertex;
+        this.symbol = symbol;
+    }
+
+    public char getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(char symbol) {
+        this.symbol = symbol;
     }
 
     public boolean containsVertex(Vertex vertex) {
@@ -34,6 +52,7 @@ public class Edge {
         return "Edge{" +
                 "startVertex=" + startVertex +
                 ", endVertex=" + endVertex +
+                ", symbol=" + symbol +
                 '}';
     }
 
@@ -42,6 +61,11 @@ public class Edge {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Edge edge = (Edge) o;
-        return startVertex.equals(edge.startVertex) && endVertex.equals(edge.endVertex);
+        return symbol == edge.symbol && Objects.equals(startVertex, edge.startVertex) && Objects.equals(endVertex, edge.endVertex);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startVertex, endVertex, symbol);
     }
 }

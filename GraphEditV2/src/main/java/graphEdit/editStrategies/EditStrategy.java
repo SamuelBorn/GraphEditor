@@ -2,6 +2,8 @@ package graphEdit.editStrategies;
 
 import graphEdit.MainGUI;
 
+import javax.swing.*;
+
 public abstract class EditStrategy {
     MainGUI gui;
 
@@ -9,5 +11,5 @@ public abstract class EditStrategy {
         this.gui = gui;
     }
 
-    public abstract void editGGraph();
+    public abstract void editGGraph(JButton pressed);
 }

@@ -5,21 +5,23 @@ import com.google.common.collect.HashBiMap;
 import graphEdit.editStrategies.*;
 import graphEdit.graphRepresentation.Arrow;
 import graphEdit.graphRepresentation.Edge;
+import graphEdit.graphRepresentation.Graph;
 import graphEdit.graphRepresentation.Vertex;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainGUI implements Runnable {
-    public final static int radius = 50;
-
+    public final static int buttonRadius = 47;
     public JFrame frame;
     public JPanel contentPane;
+    public Graph graph = new Graph();
     public ButtonPlacer buttonPlacer;
     public ButtonClicker buttonClicker;
+    public JButton penultimatePressed = null;
     public EditStrategy editOption = new AddEdgeStrategy(this);
     public BiMap<JButton, Vertex> buttonVertexBiMap = HashBiMap.create();   //maps buttons to vertices and vice versa
-    public BiMap<JButton, Edge> buttonEdgeBiMap = HashBiMap.create();       //maps arrows to edges and vice versa
+    public BiMap<Arrow, Edge> arrowEdgeBiMap = HashBiMap.create();       //maps arrows to edges and vice versa
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new MainGUI());
@@ -78,16 +80,16 @@ public class MainGUI implements Runnable {
         editOptionGroup.add(setStart);
 
         minimize.addActionListener(e -> {
-            Arrow arrow = new Arrow();
-            arrow.setSize(contentPane.getSize());
-            arrow.setOpaque(false);
-            arrow.setEnabled(false);
-            contentPane.add(arrow, -1, 0);
-            contentPane.revalidate();
-            contentPane.repaint();
+//            Arrow arrow = new Arrow();
+//            arrow.setSize(contentPane.getSize());
+//            arrow.setOpaque(false);
+//            arrow.setEnabled(false);
+//            contentPane.add(arrow, -1, 0);
+//            contentPane.revalidate();
+//            contentPane.repaint();
         });
         neaToDea.addActionListener(e -> {
-            //nop
+            System.out.println(new AddEdgeStrategy(this).getSymbol());
         });
 
         //depending on which radio button is active select a different EditOption
