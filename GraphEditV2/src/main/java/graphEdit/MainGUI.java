@@ -58,7 +58,6 @@ public class MainGUI implements Runnable {
 
         JMenu tgiAlgorithms = new JMenu("TGI Algorithms");
         JMenuItem minimize = new JMenuItem("Minimize Graph");
-        JMenuItem neaToDea = new JMenuItem("NEA into DEA");
 
         addEdge.setSelected(true);
         editGraph.add(addEdge);
@@ -67,7 +66,6 @@ public class MainGUI implements Runnable {
         editGraph.add(setStart);
 
         tgiAlgorithms.add(minimize);
-        tgiAlgorithms.add(neaToDea);
         jMenuBar.add(editGraph);
         jMenuBar.add(tgiAlgorithms);
 
@@ -80,16 +78,7 @@ public class MainGUI implements Runnable {
         editOptionGroup.add(setStart);
 
         minimize.addActionListener(e -> {
-//            Arrow arrow = new Arrow();
-//            arrow.setSize(contentPane.getSize());
-//            arrow.setOpaque(false);
-//            arrow.setEnabled(false);
-//            contentPane.add(arrow, -1, 0);
-//            contentPane.revalidate();
-//            contentPane.repaint();
-        });
-        neaToDea.addActionListener(e -> {
-            System.out.println(new AddEdgeStrategy(this).getSymbol());
+            new TGIAlgorithms(this);
         });
 
         //depending on which radio button is active select a different EditOption

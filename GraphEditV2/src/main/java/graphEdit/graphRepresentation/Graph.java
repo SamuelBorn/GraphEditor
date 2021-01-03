@@ -81,12 +81,21 @@ public class Graph {
     }
 
     public Collection<Vertex> getFinalVertices(){
-        Collection<Vertex> finalVertices = new ArrayList<>();
+        Collection<Vertex> finalVertices = new HashSet<>();
         for (Vertex vertex : vertices) {
             if (vertex.isFinalState()) finalVertices.add(vertex);
         }
         return finalVertices;
     }
+
+    public Collection<Vertex> getNonFinalVertices(){
+        Collection<Vertex> finalVertices = new HashSet<>();
+        for (Vertex vertex : vertices) {
+            if (!vertex.isFinalState()) finalVertices.add(vertex);
+        }
+        return finalVertices;
+    }
+
 
     @Override
     public String toString() {
