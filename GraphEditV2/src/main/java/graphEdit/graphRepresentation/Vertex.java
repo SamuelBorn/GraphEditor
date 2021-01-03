@@ -37,6 +37,10 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return "Vertex{" + name + '}';
+        if (finalState) {
+            return  name+"(final)";
+        } else {
+            return name;
+        }
     }
 }

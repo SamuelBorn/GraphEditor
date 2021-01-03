@@ -80,5 +80,19 @@ public class Graph {
         startVertex = null;
     }
 
+    public Collection<Vertex> getFinalVertices(){
+        Collection<Vertex> finalVertices = new ArrayList<>();
+        for (Vertex vertex : vertices) {
+            if (vertex.isFinalState()) finalVertices.add(vertex);
+        }
+        return finalVertices;
+    }
 
+    @Override
+    public String toString() {
+        return "Start: " + getStartVertex() + "\n" +
+                "Vertices: " + getVertices() + "\n" +
+                "Edges: " + getEdges() + "\n";
+
+    }
 }
