@@ -10,6 +10,7 @@ import graphEdit.graphRepresentation.Vertex;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Iterator;
 
 public class MainGUI implements Runnable {
     public final static int buttonRadius = 47;
@@ -43,6 +44,28 @@ public class MainGUI implements Runnable {
         contentPane.addMouseListener(buttonPlacer);
         frame.setSize(650, 450);
         frame.setLocationByPlatform(true);
+
+        buttonPlacer.placeButton(100, 100);
+        buttonPlacer.placeButton(200, 100);
+        buttonPlacer.placeButton(100, 200);
+        buttonPlacer.placeButton(200, 200);
+        Iterator<JButton> iterator = buttonVertexBiMap.inverse().values().iterator();
+        JButton b0 = iterator.next();
+        JButton b1 = iterator.next();
+        JButton b2 = iterator.next();
+        JButton b3 = iterator.next();
+
+        new SetStartVertexStrategy(this).editGGraph(b0);
+        new SetFinalStrategy(this).editGGraph(b3);
+        penultimatePressed = b0;
+        new AddEdgeStrategy(this).editGGraph(b1);
+        penultimatePressed = b0;
+        new AddEdgeStrategy(this).editGGraph(b2);
+        penultimatePressed = b2;
+        new AddEdgeStrategy(this).editGGraph(b3);
+        penultimatePressed = b1;
+        new AddEdgeStrategy(this).editGGraph(b3);
+
         frame.setVisible(true);
     }
 
@@ -78,7 +101,7 @@ public class MainGUI implements Runnable {
         editOptionGroup.add(setStart);
 
         minimize.addActionListener(e -> {
-            new TGIAlgorithms(this);
+            new TGIAlgorithms(this).minimize();
         });
 
         //depending on which radio button is active select a different EditOption

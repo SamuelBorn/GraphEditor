@@ -35,5 +35,7 @@ public class SetFinalStrategy extends EditStrategy {
                 pressed.setBorder(new FinalStateBorder());
             }
         }
+        gui.contentPane.revalidate();
+        gui.contentPane.repaint();
     }
 }

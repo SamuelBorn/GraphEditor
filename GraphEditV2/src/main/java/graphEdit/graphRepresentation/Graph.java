@@ -121,17 +121,20 @@ public class Graph {
 
     public String getNextName() {
         if (vertices.size() == 0) return "q0";
-        int minName = 0;
-        boolean nameExists = true;
-        while(nameExists) {
-            nameExists = false;
+        int index = 0;
+        boolean unusedIndexFound;
+        do {
+            unusedIndexFound = true;
+            String newName = "" + index;
             for (Vertex vertex : vertices) {
-                if (vertex.getName().contains("" + minName)) nameExists = true;
-                System.out.println(vertex);
+                if (vertex.getName().contains(newName)){
+                    unusedIndexFound = false;
+                    break;
+                }
             }
-            minName++;
-        }
-        return "q"+minName;
+            if (!unusedIndexFound) index++; //do not update a last time
+        } while (!unusedIndexFound);
+        return "q" + index;
     }
 
     @Override

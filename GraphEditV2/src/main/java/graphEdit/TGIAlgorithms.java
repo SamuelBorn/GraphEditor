@@ -8,6 +8,7 @@ import graphEdit.graphRepresentation.Vertex;
 import javax.swing.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class TGIAlgorithms {
@@ -59,6 +60,7 @@ public class TGIAlgorithms {
             }
             worldLength++;
         }
+        System.out.println(graph);
     }
 
     private boolean isFinalAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
@@ -69,13 +71,14 @@ public class TGIAlgorithms {
         if (word.equals("")) {
             return vertex;
         }
-        if (graph.getNextVertices(vertex, word.charAt(0)).size() != 1) {
+        if (graph.getNextVertices(vertex, word.charAt(0)).size() > 1) {
             System.err.println("The given Graph is not a DEA");
             JOptionPane.showMessageDialog(gui.frame, "The given Graph is not a DEA");
             throw new IllegalArgumentException();
         }
-        Vertex nextVertex = graph.getNextVertices(vertex, word.charAt(0)).iterator().next();
-        String subString = word.substring(1, word.length() - 1);
+        Iterator<Vertex> iterator = graph.getNextVertices(vertex, word.charAt(0)).iterator();
+        Vertex nextVertex = iterator.hasNext() ? iterator.next() : null;
+        String subString = word.length() > 1 ? word.substring(1, word.length() - 1) : "";
         return vertexAfterExecution(nextVertex, subString);
     }
 
@@ -108,14 +111,22 @@ public class TGIAlgorithms {
      */
     private void removeUnnecassaryVertices() {
         Set<Vertex> allAccessibleVertices = getAllAccessibleVertices();
+        Set<Vertex> toBeRemoved = new HashSet<>();
         for (Vertex vertex : graph.getVertices()) {
             if (!allAccessibleVertices.contains(vertex)) {
-                JButton vertexButton = gui.buttonVertexBiMap.inverse().get(vertex);
-                new RemoveVertexStrategy(gui).editGGraph(vertexButton);
+                toBeRemoved.add(vertex);
             }
+        }
+        for (Vertex vertex : toBeRemoved) {
+            JButton vertexButton = gui.buttonVertexBiMap.inverse().get(vertex);
+            new RemoveVertexStrategy(gui).editGGraph(vertexButton);
         }
     }
 
+    /**
+     *
+     * @return the set of vertices that are reachable from start
+     */
     private Set<Vertex> getAllAccessibleVertices() {
         Set<Vertex> allAccessibleVertices = new HashSet<>();
         if (graph.getStartVertex() == null) return allAccessibleVertices;

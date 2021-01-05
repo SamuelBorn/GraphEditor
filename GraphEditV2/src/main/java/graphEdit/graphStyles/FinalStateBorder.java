@@ -13,6 +13,6 @@ public class FinalStateBorder extends RoundedButtonBorder{
         int offset = (int) ((1 - innerRadiusMultiplication) / 2 * MainGUI.buttonRadius);
 
         g.drawOval(x + offset, y + offset,smallRadius , smallRadius);
-        g.drawOval(x, y, MainGUI.buttonRadius, MainGUI.buttonRadius);
+        g.drawOval(x, y, MainGUI.buttonRadius-1, MainGUI.buttonRadius-1);
     }
 }

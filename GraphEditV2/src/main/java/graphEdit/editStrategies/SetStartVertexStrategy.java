@@ -44,5 +44,7 @@ public class SetStartVertexStrategy extends EditStrategy {
                 pressed.setBorder(new StartStateBorder());
             }
         }
+        gui.contentPane.revalidate();
+        gui.contentPane.repaint();
     }
 }

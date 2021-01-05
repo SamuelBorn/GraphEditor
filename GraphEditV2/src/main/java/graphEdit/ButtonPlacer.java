@@ -18,6 +18,10 @@ public class ButtonPlacer extends MouseAdapter {
     public void mouseClicked(MouseEvent event) {
         int x = event.getX();
         int y = event.getY();
+        placeButton(x,y);
+    }
+
+    public void placeButton(int x, int y){
         String name = gui.graph.getNextName();
 
         JButton button = new JButton(name);

@@ -31,5 +31,8 @@ public class RemoveVertexStrategy extends EditStrategy {
 
         gui.buttonVertexBiMap.remove(pressed);
         gui.contentPane.remove(pressed);
+
+        gui.contentPane.revalidate();
+        gui.contentPane.repaint();
     }
 }
