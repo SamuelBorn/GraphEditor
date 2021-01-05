@@ -18,7 +18,7 @@ public class ButtonPlacer extends MouseAdapter {
     public void mouseClicked(MouseEvent event) {
         int x = event.getX();
         int y = event.getY();
-        String name = "q" + gui.graph.size();
+        String name = gui.graph.getNextName();
 
         JButton button = new JButton(name);
         button.setBounds(x - MainGUI.buttonRadius / 2, y - MainGUI.buttonRadius / 2, MainGUI.buttonRadius, MainGUI.buttonRadius);

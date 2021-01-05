@@ -1,6 +1,9 @@
 package graphEdit.graphRepresentation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Graph {
     private final Set<Vertex> vertices;
@@ -19,6 +22,26 @@ public class Graph {
 
     public Set<Vertex> getVertices() {
         return vertices;
+    }
+
+    public Set<Vertex> getNextVertices(Vertex vertex) {
+        Set<Vertex> next = new HashSet<>();
+        for (Edge edge : edges) {
+            if (edge.getStartVertex().equals(vertex)) {
+                next.add(edge.getEndVertex());
+            }
+        }
+        return next;
+    }
+
+    public Set<Vertex> getNextVertices(Vertex vertex, char symbol) {
+        Set<Vertex> next = new HashSet<>();
+        for (Edge edge : edges) {
+            if (edge.getStartVertex().equals(vertex) && edge.getSymbol() == symbol) {
+                next.add(edge.getEndVertex());
+            }
+        }
+        return next;
     }
 
     public void removeVertex(Vertex vertex) {
@@ -48,7 +71,7 @@ public class Graph {
         edges.remove(edge);
     }
 
-    public void removeEdges(Collection<Edge> edges){
+    public void removeEdges(Collection<Edge> edges) {
         for (Edge edge : edges) {
             this.edges.remove(edge);
         }
@@ -80,7 +103,7 @@ public class Graph {
         startVertex = null;
     }
 
-    public Collection<Vertex> getFinalVertices(){
+    public Collection<Vertex> getFinalVertices() {
         Collection<Vertex> finalVertices = new HashSet<>();
         for (Vertex vertex : vertices) {
             if (vertex.isFinalState()) finalVertices.add(vertex);
@@ -88,7 +111,7 @@ public class Graph {
         return finalVertices;
     }
 
-    public Collection<Vertex> getNonFinalVertices(){
+    public Collection<Vertex> getNonFinalVertices() {
         Collection<Vertex> finalVertices = new HashSet<>();
         for (Vertex vertex : vertices) {
             if (!vertex.isFinalState()) finalVertices.add(vertex);
@@ -96,6 +119,20 @@ public class Graph {
         return finalVertices;
     }
 
+    public String getNextName() {
+        if (vertices.size() == 0) return "q0";
+        int minName = 0;
+        boolean nameExists = true;
+        while(nameExists) {
+            nameExists = false;
+            for (Vertex vertex : vertices) {
+                if (vertex.getName().contains("" + minName)) nameExists = true;
+                System.out.println(vertex);
+            }
+            minName++;
+        }
+        return "q"+minName;
+    }
 
     @Override
     public String toString() {
