@@ -57,14 +57,6 @@ public class MainGUI implements Runnable {
 
         new SetStartVertexStrategy(this).editGGraph(b0);
         new SetFinalStrategy(this).editGGraph(b3);
-        penultimatePressed = b0;
-        new AddEdgeStrategy(this).editGGraph(b1);
-        penultimatePressed = b0;
-        new AddEdgeStrategy(this).editGGraph(b2);
-        penultimatePressed = b2;
-        new AddEdgeStrategy(this).editGGraph(b3);
-        penultimatePressed = b1;
-        new AddEdgeStrategy(this).editGGraph(b3);
 
         frame.setVisible(true);
     }

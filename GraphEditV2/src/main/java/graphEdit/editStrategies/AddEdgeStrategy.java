@@ -26,7 +26,10 @@ public class AddEdgeStrategy extends EditStrategy {
             do {
                 //symbol = getSymbol();
                 symbol = 'a'; //TODO REMOVE LINE
-                if (symbol == STOP_SYMBOL) return;
+                if (symbol == STOP_SYMBOL){
+                    gui.penultimatePressed = null;
+                    return;
+                }
             } while (symbol == ERROR_SYMBOL);
             Edge edge = new Edge(startVertex, endVertex, symbol);
             gui.graph.addEdge(edge);
