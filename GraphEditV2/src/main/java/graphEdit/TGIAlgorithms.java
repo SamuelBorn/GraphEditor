@@ -106,9 +106,6 @@ public class TGIAlgorithms {
                     Set<Vertex> tempFinalVertices = new HashSet<>();
                     Set<Vertex> tempNonFinalVertices = new HashSet<>();
                     for (Vertex vertex : equivalencyClass) {
-                        if (s.equals("*/")){
-                            System.out.println(vertex+ " - "+ s + " - "+ isFinalAfterExecution(vertex, s));
-                        }
                         if (isFinalAfterExecution(vertex, s)) {
                             tempFinalVertices.add(vertex);
                         } else {
@@ -121,12 +118,11 @@ public class TGIAlgorithms {
                     if (tempNonFinalVertices.size() > 0) tempEquivalencyClasses.add(tempNonFinalVertices);
                 }
                 equivalencyClasses = copyEquivalenyClasses(tempEquivalencyClasses);
-                System.out.println(s+": "+ equivalencyClasses);
+                //System.out.println(s+": "+ equivalencyClasses);
             }
-
-
             wordLength++;
         }
+        System.out.println(equivalencyClasses);
 
         return equivalencyClasses;
     }
@@ -143,7 +139,7 @@ public class TGIAlgorithms {
         return vertexAfterExecution(vertex, word).isFinalState();
     }
 
-    private Vertex vertexAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
+    public Vertex vertexAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
         if (word.equals("")) {
             return vertex;
         }
@@ -152,7 +148,7 @@ public class TGIAlgorithms {
         }
         Iterator<Vertex> iterator = graph.getNextVertices(vertex, word.charAt(0)).iterator();
         Vertex nextVertex = iterator.hasNext() ? iterator.next() : null;
-        String subString = word.length() > 1 ? word.substring(1, word.length() - 1) : "";
+        String subString = word.substring(1);
         return vertexAfterExecution(nextVertex, subString);
     }
 

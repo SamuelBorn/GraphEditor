@@ -120,6 +120,8 @@ public class MainGUI implements Runnable {
             new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[7],testVertices[4],'*'));
             new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[7],testVertices[5],'/'));
 
+            new TGIAlgorithms(this).vertexAfterExecution(testVertices[1], "*/");
+
             contentPane.revalidate();
             contentPane.repaint();
         });
