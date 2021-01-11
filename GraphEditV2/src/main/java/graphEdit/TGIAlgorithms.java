@@ -34,7 +34,7 @@ public class TGIAlgorithms {
             JOptionPane.showMessageDialog(gui.frame, "The given Graph is not a DEA");
             return;
         }
-/*
+
         for (Set<Vertex> equivalencyClass : equivalencyClasses) {
             if (equivalencyClass == null || equivalencyClass.size() == 0) continue;
             Vertex representVertex = getPossibleStartVertex(equivalencyClass);
@@ -65,7 +65,7 @@ public class TGIAlgorithms {
             gui.contentPane.revalidate();
             gui.contentPane.repaint();
 
-        }*/
+        }
     }
 
     /**
