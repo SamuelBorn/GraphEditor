@@ -7,6 +7,7 @@ import graphEdit.graphStyles.Arrow;
 import graphEdit.graphRepresentation.Edge;
 import graphEdit.graphRepresentation.Graph;
 import graphEdit.graphRepresentation.Vertex;
+import graphEdit.*;
 
 import javax.swing.*;
 import java.awt.*;

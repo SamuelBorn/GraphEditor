@@ -94,7 +94,7 @@ public class Graph {
 
     /**
      *
-     * @param vertex
+     * @param vertex contains
      * @return returns all edges that either have @vertex as start or end vertex
      */
     public Collection<Edge> getEdgesContainingVertex(Vertex vertex) {
@@ -110,8 +110,8 @@ public class Graph {
     /**
      * as the buttons are saved with the name as an id
      * you can get a button by simply checking the name
-     * @param name
-     * @return
+     * @param name name
+     * @return vertex
      */
     public Vertex getVertexByName(String name){
         for (Vertex vertex : vertices) {
@@ -154,7 +154,7 @@ public class Graph {
      * this returns the next name of a vertex
      * because the vertex name is used as an id this method is needed
      * to make sure the name is unique
-     * @return
+     * @return name
      */
     public String getNextName() {
         if (vertices.size() == 0) return "q0";
