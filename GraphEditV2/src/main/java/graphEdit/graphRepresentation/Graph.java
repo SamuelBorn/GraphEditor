@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * the graph has edges and vertices
+ */
 public class Graph {
     private final Set<Vertex> vertices;
     private Set<Edge> edges;
@@ -89,6 +92,11 @@ public class Graph {
         edges.add(edge);
     }
 
+    /**
+     *
+     * @param vertex
+     * @return returns all edges that either have @vertex as start or end vertex
+     */
     public Collection<Edge> getEdgesContainingVertex(Vertex vertex) {
         Collection<Edge> containList = new ArrayList<>();
         for (Edge edge : edges) {
@@ -99,6 +107,12 @@ public class Graph {
         return containList;
     }
 
+    /**
+     * as the buttons are saved with the name as an id
+     * you can get a button by simply checking the name
+     * @param name
+     * @return
+     */
     public Vertex getVertexByName(String name){
         for (Vertex vertex : vertices) {
             if (vertex.getName().contains(name)){
@@ -136,6 +150,12 @@ public class Graph {
         return finalVertices;
     }
 
+    /**
+     * this returns the next name of a vertex
+     * because the vertex name is used as an id this method is needed
+     * to make sure the name is unique
+     * @return
+     */
     public String getNextName() {
         if (vertices.size() == 0) return "q0";
         int index = 0;

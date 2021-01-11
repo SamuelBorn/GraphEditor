@@ -2,10 +2,24 @@ package graphEdit.graphRepresentation;
 
 import java.util.Objects;
 
+/**
+ * a dea consists out of edges and vertices
+ * this is the edge part
+ * simple but effective
+ * name and checking if final state
+ * the graph start state isnt here saved
+ * as it is unique per graph
+ * + all useful getters and setters
+ */
 public class Vertex {
     private String name;
     private boolean finalState;
 
+    /**
+     * vertex name is used as an id!!!
+     * so the graph verwalter needs to check if this name given is truly unique
+     * @param name id
+     */
     public Vertex(String name) {
         this.name = name;
         finalState = false;

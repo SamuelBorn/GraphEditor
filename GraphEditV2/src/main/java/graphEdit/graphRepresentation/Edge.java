@@ -2,6 +2,13 @@ package graphEdit.graphRepresentation;
 
 import java.util.Objects;
 
+/**
+ * a dea consists out of edges and vertices
+ * this is the edge part
+ * simple but effective
+ * start, end, and smybol
+ * + all useful getters and setters
+ */
 public class Edge {
     private Vertex startVertex;
     private Vertex endVertex;
