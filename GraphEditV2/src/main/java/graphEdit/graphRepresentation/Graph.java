@@ -56,6 +56,10 @@ public class Graph {
         edges = newEdges;
     }
 
+    public void removeVertices(Collection<Vertex> remove){
+        vertices.removeAll(remove);
+    }
+
     public void addVertex(Vertex vertex) {
         for (Vertex vertexIterator : vertices) { //the name ist used as an ID so it must be unique
             if (vertex.getName().equals(vertexIterator.getName())) return;
@@ -69,6 +73,10 @@ public class Graph {
 
     public void removeEdge(Edge edge) {
         edges.remove(edge);
+    }
+
+    public void addEdges(Collection<Edge> edges){
+        this.edges.addAll(edges);
     }
 
     public void removeEdges(Collection<Edge> edges) {

@@ -21,9 +21,11 @@ public class RemoveVertexStrategy extends EditStrategy {
 
         for (Edge edge : edges) {
             Arrow arrowToBeRemoved = gui.arrowEdgeBiMap.inverse().get(edge);
-            gui.contentPane.remove(arrowToBeRemoved);
-            gui.arrowEdgeBiMap.remove(arrowToBeRemoved);
-            gui.arrowEdgeBiMap.inverse().remove(edge);
+            if (arrowToBeRemoved!=null){
+                gui.contentPane.remove(arrowToBeRemoved);
+                gui.arrowEdgeBiMap.remove(arrowToBeRemoved);
+                gui.arrowEdgeBiMap.inverse().remove(edge);
+            }
         }
 
         gui.graph.removeVertex(vertex);

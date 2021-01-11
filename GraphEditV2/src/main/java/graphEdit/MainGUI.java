@@ -45,18 +45,7 @@ public class MainGUI implements Runnable {
         frame.setSize(650, 450);
         frame.setLocationByPlatform(true);
 
-        buttonPlacer.placeButton(100, 100);
-        buttonPlacer.placeButton(200, 100);
-        buttonPlacer.placeButton(100, 200);
-        buttonPlacer.placeButton(200, 200);
-        Iterator<JButton> iterator = buttonVertexBiMap.inverse().values().iterator();
-        JButton b0 = iterator.next();
-        JButton b1 = iterator.next();
-        JButton b2 = iterator.next();
-        JButton b3 = iterator.next();
 
-        new SetStartVertexStrategy(this).editGGraph(b0);
-        new SetFinalStrategy(this).editGGraph(b3);
 
         frame.setVisible(true);
     }
@@ -65,7 +54,7 @@ public class MainGUI implements Runnable {
     public void initializeMenuBar() {
         JMenuBar jMenuBar = new JMenuBar();
 
-        JMenu editGraph = new JMenu("Edt Graph");
+        JMenu editGraph = new JMenu("Edit Graph");
         JRadioButtonMenuItem addEdge = new JRadioButtonMenuItem("Add edge");
         JRadioButtonMenuItem removeVertex = new JRadioButtonMenuItem("Remove vertices");
         JRadioButtonMenuItem setStart = new JRadioButtonMenuItem("Set starting vertex");
@@ -73,6 +62,7 @@ public class MainGUI implements Runnable {
 
         JMenu tgiAlgorithms = new JMenu("TGI Algorithms");
         JMenuItem minimize = new JMenuItem("Minimize Graph");
+        JMenuItem loadTestGraph = new JMenuItem("Load test graph");
 
         addEdge.setSelected(true);
         editGraph.add(addEdge);
@@ -81,6 +71,7 @@ public class MainGUI implements Runnable {
         editGraph.add(setStart);
 
         tgiAlgorithms.add(minimize);
+        tgiAlgorithms.add(loadTestGraph);
         jMenuBar.add(editGraph);
         jMenuBar.add(tgiAlgorithms);
 
@@ -91,6 +82,47 @@ public class MainGUI implements Runnable {
         editOptionGroup.add(removeVertex);
         editOptionGroup.add(setFinal);
         editOptionGroup.add(setStart);
+
+        loadTestGraph.addActionListener(e -> {
+            buttonPlacer.placeButton(100, 100);
+            buttonPlacer.placeButton(200, 100);
+            buttonPlacer.placeButton(200, 200);
+            buttonPlacer.placeButton(300, 100);
+            buttonPlacer.placeButton(400, 100);
+            buttonPlacer.placeButton(500, 200);
+            buttonPlacer.placeButton(300, 200);
+            buttonPlacer.placeButton(500, 100);
+
+            Vertex[] testVertices = new Vertex[10];
+            int i = 0;
+            for (Vertex value : buttonVertexBiMap.values()) {
+                testVertices[i] = value;
+                i++;
+            }
+
+            new SetStartVertexStrategy(this).editGGraph(buttonVertexBiMap.inverse().get(testVertices[0]));
+            new SetFinalStrategy(this).editGGraph(buttonVertexBiMap.inverse().get(testVertices[6]));
+            new SetFinalStrategy(this).editGGraph(buttonVertexBiMap.inverse().get(testVertices[7]));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[0],testVertices[1],'/'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[0],testVertices[2],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[1],testVertices[2],'/'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[1],testVertices[3],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[2],testVertices[2],'/'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[2],testVertices[2],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[3],testVertices[6],'/'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[3],testVertices[4],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[4],testVertices[4],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[4],testVertices[7],'/'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[5],testVertices[5],'/'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[5],testVertices[4],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[6],testVertices[4],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[6],testVertices[5],'/'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[7],testVertices[4],'*'));
+            new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[7],testVertices[5],'/'));
+
+            contentPane.revalidate();
+            contentPane.repaint();
+        });
 
         minimize.addActionListener(e -> {
             new TGIAlgorithms(this).minimize();

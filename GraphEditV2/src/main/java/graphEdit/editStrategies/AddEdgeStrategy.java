@@ -22,28 +22,39 @@ public class AddEdgeStrategy extends EditStrategy {
         } else {
             Vertex startVertex = gui.buttonVertexBiMap.get(gui.penultimatePressed);
             Vertex endVertex = gui.buttonVertexBiMap.get(pressed);
-            char symbol;
-            do {
-                //symbol = getSymbol();
-                symbol = 'a'; //TODO REMOVE LINE
-                if (symbol == STOP_SYMBOL){
-                    gui.penultimatePressed = null;
-                    return;
-                }
-            } while (symbol == ERROR_SYMBOL);
-            Edge edge = new Edge(startVertex, endVertex, symbol);
-            gui.graph.addEdge(edge);
-            Arrow arrow = new Arrow(edge, gui);
-            arrow.setSize(gui.contentPane.getSize());
-            gui.contentPane.add(arrow);
-            gui.arrowEdgeBiMap.put(arrow, edge);
-            gui.penultimatePressed = null;
+            addEdge(startVertex, endVertex);
         }
+    }
+
+    public void addEdge(Vertex startVertex, Vertex endVertex){
+        char symbol;
+        do {
+            symbol = getSymbol();
+            //symbol = 'a'; //TODO REMOVE LINE
+            if (symbol == STOP_SYMBOL){
+                gui.penultimatePressed = null;
+                return;
+            }
+        } while (symbol == ERROR_SYMBOL);
+        Edge edge = new Edge(startVertex, endVertex, symbol);
+        placeEdge(edge);
+    }
+
+    public void placeEdge(Edge edge){
+        if (gui.graph.getEdges().contains(edge)) {
+            return;
+        }
+        gui.graph.addEdge(edge);
+        Arrow arrow = new Arrow(edge, gui);
+        arrow.setSize(gui.contentPane.getSize());
+        gui.contentPane.add(arrow);
+        gui.arrowEdgeBiMap.put(arrow, edge);
+        gui.penultimatePressed = null;
         gui.contentPane.revalidate();
         gui.contentPane.repaint();
     }
 
-    public char getSymbol() {
+    private char getSymbol() {
         String s = (String) JOptionPane.showInputDialog(
                 gui.frame,
                 "Enter transition Symbol",
