@@ -51,6 +51,9 @@ public class MainGUI implements Runnable {
     }
 
 
+    /**
+     * simply inits the menu bar and adds apporirate action listeners
+     */
     public void initializeMenuBar() {
         JMenuBar jMenuBar = new JMenuBar();
 

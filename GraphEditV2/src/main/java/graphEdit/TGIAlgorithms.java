@@ -15,13 +15,20 @@ public class TGIAlgorithms {
     private final MainGUI gui;
     private final Graph graph;
 
+    /**
+     * @param gui the gui to be later updated
+     */
     public TGIAlgorithms(MainGUI gui) {
         this.gui = gui;
         this.graph = gui.graph;
     }
 
+    /**
+     * minimizes a DEA
+     */
     public void minimize() {
 
+        //first check if there is a start vertex
         if (graph.getStartVertex() == null) {
             System.err.println("The given Graph is not a DEA");
             JOptionPane.showMessageDialog(gui.frame, "The given Graph is not a DEA");
@@ -30,6 +37,7 @@ public class TGIAlgorithms {
 
         removeUnnecassaryVertices();
 
+        //the equivalency classes are stroed as sets
         Set<Set<Vertex>> equivalencyClasses = getEquivalencyClasses();
 
         if (equivalencyClasses == null) {
@@ -42,6 +50,10 @@ public class TGIAlgorithms {
 
     }
 
+    /**
+     * gets the equi classes and applies them to the gui
+     * @param equivalencyClasses
+     */
     private void applyMinimizeToGUI(Set<Set<Vertex>> equivalencyClasses) {
         Set<Edge> edges = new HashSet<>(graph.getEdges());
 
@@ -70,6 +82,12 @@ public class TGIAlgorithms {
         }
     }
 
+    /**
+     * get a equivalency class and returns a name
+     * like a class contains q0, q1, q3 them out put will be "{q0, q1, q3}"
+     * @param equivalencyClass
+     * @return
+     */
     private String getEquivalencyClassName(Set<Vertex> equivalencyClass) {
         String newName = "{";
         for (Vertex vertex : equivalencyClass) {
@@ -78,6 +96,9 @@ public class TGIAlgorithms {
         return newName.substring(0, newName.length() - 2) + "}";
     }
 
+    /**
+     * @return the equivalency classes
+     */
     private Set<Set<Vertex>> getEquivalencyClasses() {
         Set<Character> transitionSymbols = getTransitionSymbols();
         Set<Vertex> finalVertices = new HashSet<>(graph.getFinalVertices());
@@ -117,6 +138,11 @@ public class TGIAlgorithms {
         return equivalencyClasses;
     }
 
+    /**
+     * copys the equivaleny classes just to be sure
+     * @param toCopy
+     * @return
+     */
     private Set<Set<Vertex>> copyEquivalenyClasses(Set<Set<Vertex>> toCopy) {
         Set<Set<Vertex>> output = new HashSet<>();
         for (Set<Vertex> vertices : toCopy) {
@@ -125,10 +151,25 @@ public class TGIAlgorithms {
         return output;
     }
 
+    /**
+     * returns if given a vertex and a word and you traverse the dea
+     * that in  the end the vertex is final or not
+     * @param vertex start vertex
+     * @param word word to traverse
+     * @return true if end vertex if final vertex
+     * @throws IllegalArgumentException if graph is not dea
+     */
     private boolean isFinalAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
         return vertexAfterExecution(vertex, word).isFinalState();
     }
 
+    /**
+     * gets the vertex after exectuion of a word at a vertex
+     * @param vertex start
+     * @param word traverse
+     * @return end vertex
+     * @throws IllegalArgumentException if graph is not dea
+     */
     private Vertex vertexAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
         if (word.equals("")) {
             return vertex;
@@ -142,6 +183,10 @@ public class TGIAlgorithms {
         return vertexAfterExecution(nextVertex, subString);
     }
 
+    /**
+     *
+     * @return a list of all symbols in  a graph
+     */
     private Set<Character> getTransitionSymbols() {
         Set<Character> transitionSymbols = new HashSet<>();
         for (Edge edge : graph.getEdges()) {
@@ -150,12 +195,25 @@ public class TGIAlgorithms {
         return transitionSymbols;
     }
 
+    /**
+     *
+     * @param characters input
+     * @param length length
+     * @return all permutations of length n oveer characters as alphabet
+     */
     private Set<String> getAllWordsOfLengthN(Set<Character> characters, int length) {
         Set<String> words = new HashSet<>();
         getAllWordsOfLengthN(words, characters, length, "");
         return words;
     }
 
+    /**
+     * recursive function of above
+     * @param words
+     * @param characters
+     * @param length
+     * @param prefix
+     */
     private void getAllWordsOfLengthN(Set<String> words, Set<Character> characters, int length, String prefix) {
         if (prefix.length() == length) {
             words.add(prefix);
@@ -193,6 +251,11 @@ public class TGIAlgorithms {
         return getAllAccessibleVertices(allAccessibleVertices);
     }
 
+    /**
+     * returns a list of all accesible vertices from start vertex
+     * @param accessible
+     * @return
+     */
     private Set<Vertex> getAllAccessibleVertices(Set<Vertex> accessible) {
         int oldSize = accessible.size();
         Set<Vertex> newAccessible = new HashSet<>();
