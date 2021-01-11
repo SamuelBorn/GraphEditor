@@ -34,11 +34,6 @@ public class TGIAlgorithms {
             JOptionPane.showMessageDialog(gui.frame, "The given Graph is not a DEA");
             return;
         }
-        for (Set<Vertex> equivalencyClass : equivalencyClasses) {
-            System.out.print(equivalencyClass + "  ");
-        }
-        System.out.println("");
-        System.out.println("");
 /*
         for (Set<Vertex> equivalencyClass : equivalencyClasses) {
             if (equivalencyClass == null || equivalencyClass.size() == 0) continue;
@@ -76,19 +71,19 @@ public class TGIAlgorithms {
     /**
      * @return this method returns the start vertex is in the set otherwise it just returns any vertex
      */
-    private Vertex getPossibleStartVertex(Set<Vertex> equivalencyClass){
+    private Vertex getPossibleStartVertex(Set<Vertex> equivalencyClass) {
         if (equivalencyClass.contains(graph.getStartVertex())) {
             return graph.getStartVertex();
         }
         return equivalencyClass.iterator().next();
     }
 
-    private String getEquivalencyClassName(Set<Vertex> equivalencyClass){
+    private String getEquivalencyClassName(Set<Vertex> equivalencyClass) {
         String newName = "{";
         for (Vertex vertex : equivalencyClass) {
-            newName = newName.concat(vertex.getName()+", ");
+            newName = newName.concat(vertex.getName() + ", ");
         }
-        return newName.substring(0,newName.length()-3)+"}";
+        return newName.substring(0, newName.length() - 3) + "}";
     }
 
     private Set<Set<Vertex>> getEquivalencyClasses() {
@@ -99,39 +94,49 @@ public class TGIAlgorithms {
         equivalencyClasses.add(finalVertices);
         equivalencyClasses.add(nonFinalVertices);
 
-        int worldLength = 1;
-        boolean finishedSplitting = false;
-        while (!finishedSplitting) {
-            finishedSplitting = true;
-            Set<String> words = getAllWordsOfLengthN(transitionSymbols, worldLength);
-            for (String word : words) {
-                Set<Set<Vertex>> updatedEquivalencyClasses = new HashSet<>();
+        boolean finished = false;
+        int wordLength = 1;
+        while (!finished) {
+            finished = true;
+
+
+            for (String s : getAllWordsOfLengthN(transitionSymbols, wordLength)) {
+                Set<Set<Vertex>> tempEquivalencyClasses = new HashSet<>();
                 for (Set<Vertex> equivalencyClass : equivalencyClasses) {
-                    Set<Vertex> newFinalVertices = new HashSet<>();
-                    Set<Vertex> newNonFinalVertices = new HashSet<>();
+                    Set<Vertex> tempFinalVertices = new HashSet<>();
+                    Set<Vertex> tempNonFinalVertices = new HashSet<>();
                     for (Vertex vertex : equivalencyClass) {
-                        try {
-                            if (isFinalAfterExecution(vertex, word)) {
-                                newFinalVertices.add(vertex);
-                            } else {
-                                newNonFinalVertices.add(vertex);
-                            }
-                        } catch (IllegalArgumentException e) {
-                            System.err.println("The given Graph is not a DEA");
-                            e.printStackTrace();
-                            JOptionPane.showMessageDialog(gui.frame, "The given Graph is not a DEA");
-                            return null;
+                        if (s.equals("*/")){
+                            System.out.println(vertex+ " - "+ s + " - "+ isFinalAfterExecution(vertex, s));
+                        }
+                        if (isFinalAfterExecution(vertex, s)) {
+                            tempFinalVertices.add(vertex);
+                        } else {
+                            tempNonFinalVertices.add(vertex);
                         }
                     }
-                    if (newFinalVertices.size() > 0 && newNonFinalVertices.size() > 0) finishedSplitting = false;
-                    if (newFinalVertices.size() > 0) updatedEquivalencyClasses.add(newFinalVertices);
-                    if (newNonFinalVertices.size() > 0) updatedEquivalencyClasses.add(newNonFinalVertices);
+                    if (tempFinalVertices.size() > 0 & tempNonFinalVertices.size() > 0)
+                        finished = false; //split happened -> not yet finished
+                    if (tempFinalVertices.size() > 0) tempEquivalencyClasses.add(tempFinalVertices);
+                    if (tempNonFinalVertices.size() > 0) tempEquivalencyClasses.add(tempNonFinalVertices);
                 }
-                equivalencyClasses = updatedEquivalencyClasses;
+                equivalencyClasses = copyEquivalenyClasses(tempEquivalencyClasses);
+                System.out.println(s+": "+ equivalencyClasses);
             }
-            worldLength++;
+
+
+            wordLength++;
         }
+
         return equivalencyClasses;
+    }
+
+    private Set<Set<Vertex>> copyEquivalenyClasses(Set<Set<Vertex>> toCopy){
+        Set<Set<Vertex>> output = new HashSet<>();
+        for (Set<Vertex> vertices : toCopy) {
+            output.add(new HashSet<>(vertices));
+        }
+        return output;
     }
 
     private boolean isFinalAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
