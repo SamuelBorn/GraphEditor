@@ -84,6 +84,11 @@ public class MainGUI implements Runnable {
         editOptionGroup.add(setStart);
 
         loadTestGraph.addActionListener(e -> {
+
+            if (buttonVertexBiMap.values().size()>0) {
+                JOptionPane.showMessageDialog(frame, "Loading a test graph is only allowed as the first action.");
+                return;
+            }
             buttonPlacer.placeButton(100, 100);
             buttonPlacer.placeButton(200, 100);
             buttonPlacer.placeButton(200, 200);
@@ -119,8 +124,6 @@ public class MainGUI implements Runnable {
             new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[6],testVertices[5],'/'));
             new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[7],testVertices[4],'*'));
             new AddEdgeStrategy(this).placeEdge(new Edge(testVertices[7],testVertices[5],'/'));
-
-            new TGIAlgorithms(this).vertexAfterExecution(testVertices[1], "*/");
 
             contentPane.revalidate();
             contentPane.repaint();

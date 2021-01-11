@@ -99,6 +99,15 @@ public class Graph {
         return containList;
     }
 
+    public Vertex getVertexByName(String name){
+        for (Vertex vertex : vertices) {
+            if (vertex.getName().contains(name)){
+                return vertex;
+            }
+        }
+        return null;
+    }
+
     public Vertex getStartVertex() {
         return startVertex;
     }

@@ -41,7 +41,13 @@ public class Arrow extends JComponent {
         Point2D.Double offsetEnd = new Point2D.Double(end.x - offset.x, end.y - offset.y);
         g.drawLine((int) offsetStart.x, (int) offsetStart.y, (int) offsetEnd.x, (int) offsetEnd.y);
         int pointSize = 10;
-        g.fillOval((int) offsetEnd.x - pointSize / 2, (int) offsetEnd.y - pointSize / 2, pointSize, pointSize);
+        if (start.equals(end)){
+            int newX = startButton.getX() + 2;
+            int newY = startButton.getY() + 2;
+            g.fillOval(newX, newY, pointSize, pointSize);
+        }else {
+            g.fillOval((int) offsetEnd.x - pointSize / 2, (int) offsetEnd.y - pointSize / 2, pointSize, pointSize);
+        }
 
 
         //paint symbol

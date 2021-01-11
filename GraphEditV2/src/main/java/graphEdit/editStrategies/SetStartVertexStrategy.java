@@ -28,23 +28,28 @@ public class SetStartVertexStrategy extends EditStrategy {
             }
         } else {
             //vertex is non start state -> now set to start
-
-            if (gui.graph.getStartVertex()!=null){ //reset previous start vertex
-                if (gui.graph.getStartVertex().isFinalState()){
-                    gui.buttonVertexBiMap.inverse().get(gui.graph.getStartVertex()).setBorder(new FinalStateBorder());
-                }else{
-                    gui.buttonVertexBiMap.inverse().get(gui.graph.getStartVertex()).setBorder(new RoundedButtonBorder());
-                }
-            }
-
-            gui.graph.setStartVertex(vertex);
-            if (vertex.isFinalState()){
-                pressed.setBorder(new StartAndFinalStateBorder());
-            }else{
-                pressed.setBorder(new StartStateBorder());
-            }
+            setNewStart(vertex);
         }
         gui.contentPane.revalidate();
         gui.contentPane.repaint();
     }
+
+    public void setNewStart(Vertex vertex) {
+        JButton pressed = gui.buttonVertexBiMap.inverse().get(vertex);
+        if (gui.graph.getStartVertex()!=null){ //reset previous start vertex
+            if (gui.graph.getStartVertex().isFinalState()){
+                gui.buttonVertexBiMap.inverse().get(gui.graph.getStartVertex()).setBorder(new FinalStateBorder());
+            }else{
+                gui.buttonVertexBiMap.inverse().get(gui.graph.getStartVertex()).setBorder(new RoundedButtonBorder());
+            }
+        }
+
+        gui.graph.setStartVertex(vertex);
+        if (vertex.isFinalState()){
+            pressed.setBorder(new StartAndFinalStateBorder());
+        }else{
+            pressed.setBorder(new StartStateBorder());
+        }
+    }
+
 }

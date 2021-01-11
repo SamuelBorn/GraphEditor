@@ -2,6 +2,8 @@ package graphEdit;
 
 import graphEdit.editStrategies.AddEdgeStrategy;
 import graphEdit.editStrategies.RemoveVertexStrategy;
+import graphEdit.editStrategies.SetFinalStrategy;
+import graphEdit.editStrategies.SetStartVertexStrategy;
 import graphEdit.graphRepresentation.Edge;
 import graphEdit.graphRepresentation.Graph;
 import graphEdit.graphRepresentation.Vertex;
@@ -29,61 +31,52 @@ public class TGIAlgorithms {
         removeUnnecassaryVertices();
 
         Set<Set<Vertex>> equivalencyClasses = getEquivalencyClasses();
+
         if (equivalencyClasses == null) {
             System.err.println("The given Graph is not a DEA");
             JOptionPane.showMessageDialog(gui.frame, "The given Graph is not a DEA");
             return;
         }
 
-        for (Set<Vertex> equivalencyClass : equivalencyClasses) {
-            if (equivalencyClass == null || equivalencyClass.size() == 0) continue;
-            Vertex representVertex = getPossibleStartVertex(equivalencyClass);
-            Set<Edge> newEdges = new HashSet<>();
-            Set<Vertex> toBeRemoved = new HashSet<>();
-            for (Vertex vertex : equivalencyClass) {
-                if (vertex.equals(representVertex)) continue;
-                toBeRemoved.add(vertex);
-                for (Edge edgeContainingVertex : graph.getEdgesContainingVertex(vertex)) {
-                    Edge newEdge = edgeContainingVertex;
-                    if (newEdge.getStartVertex().equals(vertex)){
-                        newEdge.setStartVertex(representVertex);
-                    }else{
-                        newEdge.setEndVertex(representVertex);
-                    }
-                    newEdges.add(newEdge);
-                }
-            }
-            for (Edge edge : newEdges) {
-                new AddEdgeStrategy(gui).placeEdge(edge);
-            }
-            for (Vertex vertex : toBeRemoved) {
-                new RemoveVertexStrategy(gui).editGGraph(gui.buttonVertexBiMap.inverse().get(vertex));
-            }
-            representVertex.setName(getEquivalencyClassName(equivalencyClass));
-            gui.buttonVertexBiMap.inverse().get(representVertex).setName(getEquivalencyClassName(equivalencyClass));
-            System.out.println(gui.buttonVertexBiMap.inverse().get(representVertex).getName());
-            gui.contentPane.revalidate();
-            gui.contentPane.repaint();
+        applyMinimizeToGUI(equivalencyClasses);
 
-        }
     }
 
-    /**
-     * @return this method returns the start vertex is in the set otherwise it just returns any vertex
-     */
-    private Vertex getPossibleStartVertex(Set<Vertex> equivalencyClass) {
-        if (equivalencyClass.contains(graph.getStartVertex())) {
-            return graph.getStartVertex();
+    private void applyMinimizeToGUI(Set<Set<Vertex>> equivalencyClasses) {
+        Set<Edge> edges = new HashSet<>(graph.getEdges());
+
+        //rename and apply vertex attributes
+        for (Set<Vertex> equivalencyClass : equivalencyClasses) {
+            Vertex representative = equivalencyClass.iterator().next();
+            JButton representativeButton = gui.buttonVertexBiMap.inverse().get(representative);
+            String newName = getEquivalencyClassName(equivalencyClass);
+            for (Vertex vertex : equivalencyClass) {
+                if (vertex.equals(representative)) continue;
+                new RemoveVertexStrategy(gui).editGGraph(gui.buttonVertexBiMap.inverse().get(vertex));
+            }
+            representative.setName(newName);
+            representativeButton.setText(newName);
+            if (equivalencyClass.contains(graph.getStartVertex())) {
+                new SetStartVertexStrategy(gui).setNewStart(representative);
+            }
         }
-        return equivalencyClass.iterator().next();
+
+        //restore old edges
+        for (Edge edge : edges) {
+            System.out.print(edge+ "\t\t\t\t");
+            Vertex start = graph.getVertexByName(edge.getStartVertex().getName());
+            Vertex end = graph.getVertexByName(edge.getEndVertex().getName());
+            char symbol = edge.getSymbol();
+            new AddEdgeStrategy(gui).placeEdge(new Edge(start, end, symbol));
+        }
     }
 
     private String getEquivalencyClassName(Set<Vertex> equivalencyClass) {
         String newName = "{";
         for (Vertex vertex : equivalencyClass) {
-            newName = newName.concat(vertex.getName() + ", ");
+            newName = newName + "" + vertex.getName() + ", ";
         }
-        return newName.substring(0, newName.length() - 3) + "}";
+        return newName.substring(0, newName.length() - 2) + "}";
     }
 
     private Set<Set<Vertex>> getEquivalencyClasses() {
@@ -127,7 +120,7 @@ public class TGIAlgorithms {
         return equivalencyClasses;
     }
 
-    private Set<Set<Vertex>> copyEquivalenyClasses(Set<Set<Vertex>> toCopy){
+    private Set<Set<Vertex>> copyEquivalenyClasses(Set<Set<Vertex>> toCopy) {
         Set<Set<Vertex>> output = new HashSet<>();
         for (Set<Vertex> vertices : toCopy) {
             output.add(new HashSet<>(vertices));
@@ -139,7 +132,7 @@ public class TGIAlgorithms {
         return vertexAfterExecution(vertex, word).isFinalState();
     }
 
-    public Vertex vertexAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
+    private Vertex vertexAfterExecution(Vertex vertex, String word) throws IllegalArgumentException {
         if (word.equals("")) {
             return vertex;
         }
