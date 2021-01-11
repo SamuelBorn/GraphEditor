@@ -9,14 +9,22 @@ import graphEdit.graphStyles.StartStateBorder;
 
 import javax.swing.*;
 
+/**
+ * this togggles the start vertex state of a vertex
+ * it keeps the graph and the gui always the same
+ */
 public class SetStartVertexStrategy extends EditStrategy {
     public SetStartVertexStrategy(MainGUI gui) {
         super(gui);
     }
 
+    /**
+     * toggles a pressed button from start to non start and vice versa
+     * @param pressed button to be toggled
+     */
     @Override
     public void editGGraph(JButton pressed) {
-        gui.penultimatePressed = null;
+        gui.penultimatePressed = null; //penultimate is reset as only should be used by add edge
         Vertex vertex = gui.buttonVertexBiMap.get(pressed);
         if (gui.graph.getStartVertex() != null && gui.graph.getStartVertex().equals(vertex)) {
             //vertex is start state -> now set to non start and update graph

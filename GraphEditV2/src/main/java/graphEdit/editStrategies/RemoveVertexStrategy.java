@@ -7,15 +7,22 @@ import graphEdit.graphStyles.Arrow;
 
 import javax.swing.*;
 import java.util.Collection;
-
+/**
+ * this class removes edges from the graph
+ * it keeps the graph and the gui always the same
+ */
 public class RemoveVertexStrategy extends EditStrategy {
     public RemoveVertexStrategy(MainGUI gui) {
         super(gui);
     }
 
+    /**
+     * simply removes a button and vertex from data
+     * @param pressed to be removed
+     */
     @Override
     public void editGGraph(JButton pressed) {
-        gui.penultimatePressed = null;
+        gui.penultimatePressed = null;//penultimate is reset as only should be used by add edge
         Vertex vertex = gui.buttonVertexBiMap.get(pressed);
         Collection<Edge> edges = gui.graph.getEdgesContainingVertex(vertex);
 

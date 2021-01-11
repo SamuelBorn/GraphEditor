@@ -4,6 +4,9 @@ import graphEdit.MainGUI;
 
 import javax.swing.*;
 
+/**
+ * subclasses of this class are yoused to update the graph and gui simultaniously
+ */
 public abstract class EditStrategy {
     MainGUI gui;
 

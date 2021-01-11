@@ -22,7 +22,6 @@ public class Arrow extends JComponent {
 
     @Override
     protected void paintComponent(Graphics g) {
-        //System.out.println(gui.graph);
         //paint line
         int offsetButton = MainGUI.buttonRadius / 2;
         JButton startButton = gui.buttonVertexBiMap.inverse().get(edge.getStartVertex());
@@ -45,13 +44,15 @@ public class Arrow extends JComponent {
             int newX = startButton.getX() + 2;
             int newY = startButton.getY() + 2;
             g.fillOval(newX, newY, pointSize, pointSize);
+            g.drawString(edge.getSymbol() + "", startButton.getX(), startButton.getY());
         }else {
             g.fillOval((int) offsetEnd.x - pointSize / 2, (int) offsetEnd.y - pointSize / 2, pointSize, pointSize);
+            //paint symbol
+            int offsetSymbol = -10;
+            g.drawString(edge.getSymbol() + "", (x1 + x2) / 2 + offsetSymbol, (y1 + y2) / 2 + offsetSymbol);
         }
 
 
-        //paint symbol
-        int offsetSymbol = -10;
-        g.drawString(edge.getSymbol() + "", (x1 + x2) / 2 + offsetSymbol, (y1 + y2) / 2 + offsetSymbol);
+
     }
 }

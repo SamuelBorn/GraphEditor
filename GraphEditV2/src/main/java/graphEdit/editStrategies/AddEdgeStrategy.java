@@ -7,6 +7,10 @@ import graphEdit.graphRepresentation.Vertex;
 
 import javax.swing.*;
 
+/**
+ * this class adds edges to a graph
+ * it keeps the graph and the gui always the same
+ */
 public class AddEdgeStrategy extends EditStrategy {
     private static final char ERROR_SYMBOL = ' ';
     private static final char STOP_SYMBOL = '°';
@@ -17,7 +21,7 @@ public class AddEdgeStrategy extends EditStrategy {
 
     @Override
     public void editGGraph(JButton pressed) {
-        if (gui.penultimatePressed == null) {
+        if (gui.penultimatePressed == null) { //updating penultimate
             gui.penultimatePressed = pressed;
         } else {
             Vertex startVertex = gui.buttonVertexBiMap.get(gui.penultimatePressed);
@@ -26,12 +30,17 @@ public class AddEdgeStrategy extends EditStrategy {
         }
     }
 
-    public void addEdge(Vertex startVertex, Vertex endVertex){
+    /**
+     * this is an extension it simbly fetches a symbol from the user and afterwards uses @placeEdge to place the edge
+     *
+     * @param startVertex startVertex of edge
+     * @param endVertex endVertex of edge
+     */
+    public void addEdge(Vertex startVertex, Vertex endVertex) {
         char symbol;
         do {
             symbol = getSymbol();
-            //symbol = 'a'; //TODO REMOVE LINE
-            if (symbol == STOP_SYMBOL){
+            if (symbol == STOP_SYMBOL) {
                 gui.penultimatePressed = null;
                 return;
             }
@@ -40,7 +49,12 @@ public class AddEdgeStrategy extends EditStrategy {
         placeEdge(edge);
     }
 
-    public void placeEdge(Edge edge){
+    /**
+     * this simply places an edge on the screen and puts it into the graph
+     *
+     * @param edge to be put on screen and in graph
+     */
+    public void placeEdge(Edge edge) {
         if (gui.graph.getEdges().contains(edge)) {
             return;
         }
@@ -54,6 +68,11 @@ public class AddEdgeStrategy extends EditStrategy {
         gui.contentPane.repaint();
     }
 
+    /**
+     * opens a popup where user can type an input
+     *
+     * @return the input of the user
+     */
     private char getSymbol() {
         String s = (String) JOptionPane.showInputDialog(
                 gui.frame,

@@ -63,7 +63,6 @@ public class TGIAlgorithms {
 
         //restore old edges
         for (Edge edge : edges) {
-            System.out.print(edge+ "\t\t\t\t");
             Vertex start = graph.getVertexByName(edge.getStartVertex().getName());
             Vertex end = graph.getVertexByName(edge.getEndVertex().getName());
             char symbol = edge.getSymbol();
@@ -111,11 +110,9 @@ public class TGIAlgorithms {
                     if (tempNonFinalVertices.size() > 0) tempEquivalencyClasses.add(tempNonFinalVertices);
                 }
                 equivalencyClasses = copyEquivalenyClasses(tempEquivalencyClasses);
-                //System.out.println(s+": "+ equivalencyClasses);
             }
             wordLength++;
         }
-        System.out.println(equivalencyClasses);
 
         return equivalencyClasses;
     }

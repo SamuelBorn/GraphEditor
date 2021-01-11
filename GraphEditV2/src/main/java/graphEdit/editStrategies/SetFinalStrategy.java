@@ -8,15 +8,22 @@ import graphEdit.graphStyles.StartAndFinalStateBorder;
 import graphEdit.graphStyles.StartStateBorder;
 
 import javax.swing.*;
-
+/**
+ * this class sets vertices as final
+ * it keeps the graph and the gui always the same
+ */
 public class SetFinalStrategy extends EditStrategy {
     public SetFinalStrategy(MainGUI gui) {
         super(gui);
     }
 
+    /**
+     * toggles the pressed button from final to non final and vice versa
+     * @param pressed button to be toggled
+     */
     @Override
     public void editGGraph(JButton pressed) {
-        gui.penultimatePressed = null;
+        gui.penultimatePressed = null;//penultimate is reset as only should be used by add edge
         Vertex vertex = gui.buttonVertexBiMap.get(pressed);
         if (vertex.isFinalState()) {
             //vertex is final state -> now set to non final
