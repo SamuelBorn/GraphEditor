@@ -4,6 +4,9 @@ import graphEdit.MainGUI;
 
 import java.awt.*;
 
+/**
+ * just have two circles as an button border to indicate final state
+ */
 public class FinalStateBorder extends RoundedButtonBorder{
 
     @Override

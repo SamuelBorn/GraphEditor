@@ -11,6 +11,9 @@ public class ButtonClicker implements ActionListener {
         this.gui = gui;
     }
 
+    /**
+     * a simple action listener that depending on which option is selected presses edits the graph
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressedButton = (JButton) e.getSource();

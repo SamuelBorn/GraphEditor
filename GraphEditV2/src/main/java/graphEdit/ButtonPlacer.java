@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * this is a mouse listener that checks if the user clicked the ground and then places a button there
+ */
 public class ButtonPlacer extends MouseAdapter {
 
     private final MainGUI gui;

@@ -27,7 +27,7 @@ public class Arrow extends JComponent {
         JButton startButton = gui.buttonVertexBiMap.inverse().get(edge.getStartVertex());
         JButton endButton = gui.buttonVertexBiMap.inverse().get(edge.getEndVertex());
         if (startButton == null || endButton == null) return;
-        int x1 = startButton.getX() + offsetButton;
+        int x1 = startButton.getX() + offsetButton; //following are all calculations on how to draw the line
         int y1 = startButton.getY() + offsetButton;
         int x2 = endButton.getX() + offsetButton;
         int y2 = endButton.getY() + offsetButton;
