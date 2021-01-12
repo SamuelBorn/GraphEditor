@@ -5,3 +5,7 @@ This tool is an add-on for my Stipdendium from the Nassau Central Studies Fund. 
 There are only a few buttons. in the left menu you choose how you want to change the given automaton: do you want to add edges? delete nodes? etc....
 
 In the right menu you can choose to minimize the given DEA ...Or rather load a test-DEA to save the work of entering it.
+
+-------------------------------------------------------------
+
+Since the amount of work was much higher than expected I decided not to implement the NEA -> DEA function (as indicated on my sketches).
