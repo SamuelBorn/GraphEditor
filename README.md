@@ -40,4 +40,4 @@ Here you can see two examples. Both machines recognize the same language but the
 
 -------------------------------------------------------------
 
-Since the amount of work was much higher than expected I decided not to implement the NEA -> DEA function (as indicated on my sketches).
+*Since the amount of work was much higher than expected I decided not to implement the NEA -> DEA function (as indicated on my sketches).
