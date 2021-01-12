@@ -9,7 +9,7 @@ In the folder you will find an old version on which I stopped working relatively
 After that I only worked on Graph Edit V2 which is now also functional.
 So you can find working source code only in **/GraphEditV2/src/main/java/graphEdit/(...)**.
 
-If you want to run the program you can either execute the file **GraphEditor.java** directly in the initial folder or compile the project yourself.
+If you want to run the program you can either execute the file **GraphEditor.jar** directly in the initial folder or compile the project yourself.
 
 There are only a few buttons. In the left menu you choose how you want to change the given automaton: do you want to add edges? delete nodes? etc....
 
