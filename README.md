@@ -21,10 +21,6 @@ How to interpret the Graph?
 * accepting vertices have two round circles around them
 * the start button has a smal arrow from nowhere to it
 
--------------------------------------------------------------
-
-Since the amount of work was much higher than expected I decided not to implement the NEA -> DEA function (as indicated on my sketches).
-
 --------------------------------------------------------------
 
 What does it mean to minimize a deterministic finite automaton (DEA)?
@@ -38,3 +34,10 @@ Here you can see two examples. Both machines recognize the same language but the
 ![not minimized](https://github.com/SamuelBorn/GraphEditor/blob/main/Images/not_minimized.png)
 ![minimized](https://github.com/SamuelBorn/GraphEditor/blob/main/Images/minimized.png)
 
+
+
+
+
+-------------------------------------------------------------
+
+Since the amount of work was much higher than expected I decided not to implement the NEA -> DEA function (as indicated on my sketches).
