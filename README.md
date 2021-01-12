@@ -7,7 +7,7 @@ This tool is an add-on for my Stipdendium from the Nassau Central Studies Fund. 
 In the folder you will find an old version on which I stopped working relatively early, because there were too many problems and the logic did not fit. But I thought that I include it to show my process.
 
 After that I only worked on Graph Edit V2 which is now also functional.
-So you can find working source code only in **/GraphEditV2/src/main/java/graphEdit/files**.
+So you can find working source code only in **/GraphEditV2/src/main/java/graphEdit/(...)**.
 
 If you want to run the program you can either execute the file **GraphEditor.java** directly in the initial folder or compile the project yourself.
 
