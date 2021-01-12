@@ -15,6 +15,12 @@ So you can find working source code only in **/GraphEditV2/src/main/java/graphEd
 
 If you want to run the program you can either execute the file **GraphEditor.java** directly in the initial folder or compile the project yourself.
 
+How to interpret the Graph?
+* round circles are Vertices of the graph
+* straight lines with a dot at the tip are connections of Vertices from the side without the dot to the one with the dot
+* accepting vertices have two round circles around them
+* the start button has a smal arrow from nowhere to it
+
 -------------------------------------------------------------
 
 Since the amount of work was much higher than expected I decided not to implement the NEA -> DEA function (as indicated on my sketches).
