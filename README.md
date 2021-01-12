@@ -19,7 +19,7 @@ How to interpret the Graph?
 * round circles are Vertices of the graph
 * straight lines with a dot at the tip are connections of Vertices from the side without the dot to the one with the dot
 * accepting vertices have two round circles around them
-* the start button has a smal arrow from nowhere to it
+* the start button has a small arrow from nowhere to it
 
 --------------------------------------------------------------
 
