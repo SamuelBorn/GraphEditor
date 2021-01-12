@@ -1,10 +1,6 @@
 # GraphEditor
 
-This tool is an add-on for my Stipdendium from the Nassau Central Studies Fund. I develop it in the course of the TGI lecture. The program will be programmed in Java and should be able to minimize a graph and convert NEAs into DEAs.
-
-There are only a few buttons. In the left menu you choose how you want to change the given automaton: do you want to add edges? delete nodes? etc....
-
-In the right menu you can choose to minimize the given DEA ...Or rather load a test-DEA to save the work of entering it.
+This tool is an add-on for my Stipdendium from the Nassau Central Studies Fund. I develop it in the course of the TGI lecture. The program will be programmed in Java and should be able to minimize a DEA.
 
 -------------------------------------------------------------
 
@@ -14,6 +10,10 @@ After that I only worked on Graph Edit V2 which is now also functional.
 So you can find working source code only in **/GraphEditV2/src/main/java/graphEdit/files**.
 
 If you want to run the program you can either execute the file **GraphEditor.java** directly in the initial folder or compile the project yourself.
+
+There are only a few buttons. In the left menu you choose how you want to change the given automaton: do you want to add edges? delete nodes? etc....
+
+In the right menu you can choose to minimize the given DEA ...Or rather load a test-DEA to save the work of entering it.
 
 How to interpret the Graph?
 * round circles are Vertices of the graph
