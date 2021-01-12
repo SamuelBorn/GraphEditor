@@ -8,4 +8,23 @@ In the right menu you can choose to minimize the given DEA ...Or rather load a t
 
 -------------------------------------------------------------
 
+In the documentation you will find an old version on which I stopped working relatively early, because there were too many problems and the logic did not fit.
+
+After that I only worked on Graph Edit V2 which is now also functional.
+So you can find working source code only in **/GraphEditV2/src/main/java/graphEdit/files**.
+
+If you want to run the program you can either execute the file **GraphEditor.java** directly in the initial folder or compile the project yourself.
+
+-------------------------------------------------------------
+
 Since the amount of work was much higher than expected I decided not to implement the NEA -> DEA function (as indicated on my sketches).
+
+--------------------------------------------------------------
+
+What does it mean to minimize a deterministic finite automaton (DEA)?
+
+Two DEAs are called equivalent if they recognize exactly the same language. So if for every input s it applies that the DEAs are either in a valid final state (marked in my program by two rings) or not.
+
+However, one DEA can be much larger than another and have many unnecessary nodes and transitions. With the graph minimization, you just want the most minimal DEA that still recognizes the same language as the original one.
+
+Here you can see two examples. Both machines recognize the same language but one is much smaller.
