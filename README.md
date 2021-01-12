@@ -28,3 +28,7 @@ Two DEAs are called equivalent if they recognize exactly the same language. So i
 However, one DEA can be much larger than another and have many unnecessary nodes and transitions. With the graph minimization, you just want the most minimal DEA that still recognizes the same language as the original one.
 
 Here you can see two examples. Both machines recognize the same language but one is much smaller.
+
+![not minimized](https://github.com/SamuelBorn/GraphEditor/blob/main/Images/not_minimized.png)
+![minimized](https://github.com/SamuelBorn/GraphEditor/blob/main/Images/minimized.png)
+
