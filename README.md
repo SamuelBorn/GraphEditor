@@ -11,6 +11,7 @@ So you can find working source code only in **/GraphEditV2/src/main/java/graphEd
 
 If you want to run the program you can either execute the file **GraphEditor.jar** directly in the initial folder or compile the project yourself.
 
+How to use the Tool?
 There are only a few buttons. In the left menu you choose how you want to change the given automaton: do you want to add edges? delete nodes? etc....
 
 In the right menu you can choose to minimize the given DEA ...Or rather load a test-DEA to save the work of entering it.
