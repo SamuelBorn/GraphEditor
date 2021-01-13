@@ -11,13 +11,13 @@ So you can find working source code only in **/GraphEditV2/src/main/java/graphEd
 
 If you want to run the program you can either execute the file **GraphEditor.jar** directly in the initial folder or compile the project yourself.
 
-###How to use the Tool?
+### How to use the Tool?
 
 There are only a few buttons. In the left menu you choose how you want to change the given automaton: do you want to add edges? delete nodes? etc....
 
 In the right menu you can choose to minimize the given DEA ...Or rather load a test-DEA to save the work of entering it.
 
-###How to interpret the Graph?**
+### How to interpret the Graph?**
 * round circles are Vertices of the graph
 * straight lines with a dot at the tip are connections of Vertices from the side without the dot to the one with the dot
 * accepting vertices have two round circles around them
@@ -25,7 +25,7 @@ In the right menu you can choose to minimize the given DEA ...Or rather load a t
 
 --------------------------------------------------------------
 
-##What does it mean to minimize a deterministic finite automaton (DEA)?
+## What does it mean to minimize a deterministic finite automaton (DEA)?
 
 Two DEAs are called equivalent if they recognize exactly the same language. So if for every input s it applies that the DEAs are either in a valid final state (marked in my program by two rings) or not.
 
