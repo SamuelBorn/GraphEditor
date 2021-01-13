@@ -23,8 +23,6 @@ In the right menu you can choose to minimize the given DEA ...Or rather load a t
 * accepting vertices have two round circles around them
 * the start button has a small arrow from nowhere to it
 
---------------------------------------------------------------
-
 ## What does it mean to minimize a deterministic finite automaton (DEA)?
 
 Two DEAs are called equivalent if they recognize exactly the same language. So if for every input s it applies that the DEAs are either in a valid final state (marked in my program by two rings) or not.
